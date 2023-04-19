@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">News Hub</string>
+    <string name="chooseTag">Choose the direction \nof the news you are interested in</string>
+    <string name="skip">Skip</string>
 </resources>
