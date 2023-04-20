@@ -8,7 +8,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.pasichdev.newshub.R
 val titleBoldFont = FontFamily(
-    Font(R.font.inter_bold, FontWeight.Bold)
+    Font(R.font.itim_regular, FontWeight.Bold)
 )
 val titleMediumFont = FontFamily(
     Font(R.font.itim_regular, FontWeight.Bold)
@@ -40,6 +40,7 @@ val Typography = Typography(
         lineHeight = 28.sp,
         letterSpacing = 0.sp
     ),
+
     /* Other default text styles to override
     titleLarge = TextStyle(
         fontFamily = FontFamily.Default,
