@@ -1,4 +1,4 @@
-package com.pasichdev.newshub
+package com.pasichdev.newshub.ui.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -40,15 +40,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.flowlayout.FlowRow
+import com.pasichdev.newshub.R
 import com.pasichdev.newshub.data.Tags
 import com.pasichdev.newshub.data.model.Tag
 import com.pasichdev.newshub.ui.theme.NewsHubTheme
 import com.pasichdev.newshub.ui.theme.PurpleGrey40
 
-
 class MainActivity : ComponentActivity() {
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -87,8 +85,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
 fun Tag(nameTag: String, icon: Int) {
 
     FilterChip(selected = false, onClick = { /*TODO*/ }, label = { Text(nameTag) }, leadingIcon = {
-        Icon(
-            Icons.Filled.Close,
+        Icon(Icons.Filled.Close,
             contentDescription =/*TODO*/ "Localized description",
             modifier = Modifier
                 .size(InputChipDefaults.IconSize)
@@ -120,8 +117,7 @@ fun FilterChipLayout() {
 @Composable
 fun ButtonContinue() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
-        Button(
-            onClick = { /* действие кнопки */ },
+        Button(onClick = { /* действие кнопки */ },
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(10.dp)
         ) {
