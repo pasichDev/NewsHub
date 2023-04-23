@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.BottomNavigation
@@ -23,7 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,6 +37,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.pasichdev.newshub.data.BottomNavItem
 import com.pasichdev.newshub.ui.theme.AppTheme
+import com.pasichdev.newshub.ui.theme.titleBoldFont
 import com.pasichdev.newshub.ui.view.HomeScreen
 
 
@@ -61,11 +63,33 @@ fun MainScreen() {
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = stringResource(id = R.string.app_name),
-                        style = MaterialTheme.typography.titleLarge
-                    )
-                }
+                    Row() {
+                        Text(
+                            "News ",
+                            color = MaterialTheme.colorScheme.onBackground,
+                            style = TextStyle(
+                                fontFamily = titleBoldFont,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 28.sp,
+                                lineHeight = 28.sp,
+                                letterSpacing = 0.sp
+                            )
+                        )
+                        Text(
+                            "Hub", color = MaterialTheme.colorScheme.primary, style = TextStyle(
+                                fontFamily = titleBoldFont,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 28.sp,
+                                lineHeight = 28.sp,
+                                letterSpacing = 0.sp
+                            )
+                        )
+
+                    }
+
+
+                },
+                Modifier.background(MaterialTheme.colorScheme.background)
             )
         },
         content = { NavigationGraph(navController = navController) },
