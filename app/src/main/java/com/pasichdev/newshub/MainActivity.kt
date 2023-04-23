@@ -42,8 +42,7 @@ import androidx.compose.ui.unit.dp
 import com.google.accompanist.flowlayout.FlowRow
 import com.pasichdev.newshub.data.Tags
 import com.pasichdev.newshub.data.model.Tag
-import com.pasichdev.newshub.ui.theme.NewsHubTheme
-import com.pasichdev.newshub.ui.theme.PurpleGrey40
+import com.pasichdev.newshub.ui.theme.AppTheme
 
 
 class MainActivity : ComponentActivity() {
@@ -52,7 +51,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            NewsHubTheme {
+            AppTheme() {
 
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
@@ -155,7 +154,7 @@ fun FilterChipEachRow(
                     text = tag.tagValue, modifier = Modifier.padding(10.dp)
                 )
             }, border = FilterChipDefaults.filterChipBorder(
-                borderColor = if (!multipleChecked.contains(tag)) PurpleGrey40 else Color.Transparent,
+              //  borderColor = if (!multipleChecked.contains(tag)) PurpleGrey40 else Color.Transparent,
                 borderWidth = if (multipleChecked.contains(tag)) 0.dp else 1.dp,
             ), shape = RoundedCornerShape(8.dp), leadingIcon = {
                 (if (multipleChecked.contains(tag)) Icons.Default.Check else null)?.let {
@@ -197,7 +196,7 @@ fun ToolbarMainScreen() {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    NewsHubTheme {
+    AppTheme {
         MainScreen()
     }
 }
