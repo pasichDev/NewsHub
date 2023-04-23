@@ -36,6 +36,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.pasichdev.newshub.data.BottomNavItem
 import com.pasichdev.newshub.ui.theme.AppTheme
+import com.pasichdev.newshub.ui.view.HomeScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -67,10 +68,9 @@ fun MainScreen() {
                 }
             )
         },
+        content = { NavigationGraph(navController = navController) },
         bottomBar = { BottomNavigation(navController = navController) }
-    ) {
-        NavigationGraph(navController = navController)
-    }
+    )
 }
 
 
@@ -132,7 +132,7 @@ fun BottomNavigation(navController: NavController) {
 fun NavigationGraph(navController: NavHostController) {
     NavHost(navController, startDestination = BottomNavItem.Home.screen_route) {
         composable(BottomNavItem.Home.screen_route) {
-            ScreenTest("Home")
+            HomeScreen()
         }
         composable(BottomNavItem.Explore.screen_route) {
             ScreenTest("Explore")
