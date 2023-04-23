@@ -92,19 +92,18 @@ fun BottomNavigation(navController: NavController) {
         val currentRoute = navBackStackEntry?.destination?.route
 
         items.forEach { item ->
-            val selected = currentRoute == item.screen_route
             BottomNavigationItem(
                 icon = {
                     Icon(
                         painterResource(id = item.icon), contentDescription = item.title,
-                        tint = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onBackground
+                        tint = if (currentRoute.equals(item.screen_route)) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onBackground
                     )
                 },
                 label = {
                     Text(
                         text = item.title,
                         fontSize = 12.sp,
-                        color = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onBackground
+                        color = if (currentRoute.equals(item.screen_route)) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onBackground
                     )
                 },
                 selectedContentColor = MaterialTheme.colorScheme.primary,
