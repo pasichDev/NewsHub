@@ -63,6 +63,7 @@ fun MainScreen() {
         topBar = {
             TopAppBar(
                 title = {
+                    // TODO: Упростить этот вариант кода
                     Row() {
                         Text(
                             "News ",
