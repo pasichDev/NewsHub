@@ -1,86 +1,109 @@
 package com.pasichdev.newshub.ui.view
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.pasichdev.newshub.R
 import com.pasichdev.newshub.data.News
 
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
 @Composable
 fun ListNews() {
     lateinit var courseList: List<News>
-    courseList = ArrayList<News>()
+    courseList = ArrayList()
 
-    // in the below line, we are adding data to our list.
-    courseList = courseList + News("Android", R.drawable.ic_launcher_background, "News test logic")
-    courseList = courseList + News("JavaScript", R.drawable.ic_launcher_background, "")
-    courseList = courseList + News("Python", R.drawable.ic_launcher_background, "")
-    courseList = courseList + News("C++", R.drawable.ic_launcher_background, "")
-    courseList = courseList + News("C#", R.drawable.ic_launcher_background, "")
-    courseList = courseList + News("Java", R.drawable.ic_launcher_background, "")
-    courseList = courseList + News("Node Js", R.drawable.ic_launcher_background, "")
+    courseList = courseList + News(
+        "На Харківщині колишній нардеп роздавав агітки на підтримку окупантів",
+        R.drawable.ic_demo,
+        "СБУ викрила колишнього нардепа, який роздавав жителям Харківщини «агітки» на підтримку росії під час окупації регіону."
+    )
+    courseList = courseList + News("JavaScript", R.drawable.ic_demo, "")
+    courseList = courseList + News("Python", R.drawable.ic_demo, "")
+    courseList = courseList + News("C++", R.drawable.ic_demo, "")
+    courseList = courseList + News("C#", R.drawable.ic_demo, "")
+    courseList = courseList + News("Java", R.drawable.ic_demo, "")
+    courseList = courseList + News("Node Js", R.drawable.ic_demo, "")
 
-    LazyRow {
-        itemsIndexed(courseList) { position, item ->
-            ItemNewsCategory(item)
-        }
+    HorizontalPager(pageCount = courseList.size) { page ->
+        ItemNewsCategory(courseList[page], Modifier)
     }
 }
 
 
 @Composable
-fun ItemNewsCategory(news: News) {
+fun ItemNewsCategory(news: News, modifier: Modifier) {
     Card(
-        modifier = Modifier
-            .padding(8.dp)
-            .fillMaxWidth()
-    ) {
-        Column(
-            modifier = Modifier
-                .padding(8.dp)
-                .fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
+        modifier = modifier
+            .padding(end = 8.dp, top = 10.dp)
+            .fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+        ),
+
         ) {
-            Spacer(modifier = Modifier.height(5.dp))
+        Column(
+            modifier = modifier
+                .padding(8.dp)
+        ) {
 
             Image(
                 painter = painterResource(id = news.image),
-
                 contentDescription = "img",
 
-                modifier = Modifier
-                    .height(60.dp)
-                    .width(60.dp)
-                    .padding(5.dp),
+                modifier = modifier
+                    .clip(RoundedCornerShape(20.dp))
+                    .fillMaxWidth()
+                    .padding(1.dp),
 
                 alignment = Alignment.Center
             )
 
-            Spacer(modifier = Modifier.height(5.dp))
 
             Text(
-                text = news.title,
-                modifier = Modifier.padding(4.dp),
-                color = Color.Black, textAlign = TextAlign.Center
+                text = "Unian",
+                modifier = Modifier.padding(8.dp),
+                color = Color.Black
             )
+            Text(
+                text = news.title,
+                modifier = Modifier.padding(8.dp),
+                color = Color.Black
+            )
+            Text(
+                text = news.value,
+                modifier = Modifier.padding(4.dp),
+                color = Color.Black
+            )
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = "Ukraine",
+                    modifier = Modifier.padding(8.dp),
+                    color = Color.Black
+                )
+                Text(
+                    text = "3 hours argo",
+                    modifier = Modifier.padding(4.dp),
+                    color = Color.Black
+                )
+            }
         }
     }
 }
