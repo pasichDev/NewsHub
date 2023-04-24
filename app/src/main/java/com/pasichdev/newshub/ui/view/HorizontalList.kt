@@ -1,30 +1,41 @@
 package com.pasichdev.newshub.ui.view
 
+
+import androidx.compose.animation.core.*
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material3.Card
+import androidx.compose.material.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.pasichdev.newshub.R
 import com.pasichdev.newshub.data.News
+import com.pasichdev.newshub.ui.theme.interFontFamily
+import com.pasichdev.newshub.ui.theme.sansationFontFamily
+import kotlinx.coroutines.launch
 
 
-@OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
+var paddingDp = 8.dp
+
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ListNews() {
     lateinit var courseList: List<News>
@@ -50,18 +61,17 @@ fun ListNews() {
 
 @Composable
 fun ItemNewsCategory(news: News, modifier: Modifier) {
-    Card(
+    OutlinedCard(
         modifier = modifier
-            .padding(end = 8.dp, top = 10.dp)
+            .padding(end = paddingDp, top = 10.dp)
             .fillMaxWidth(),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            containerColor = MaterialTheme.colorScheme.surface,
         ),
-
-        ) {
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.surfaceVariant),
+    ) {
         Column(
-            modifier = modifier
-                .padding(8.dp)
+            modifier = modifier.padding(paddingDp)
         ) {
 
             Image(
@@ -69,118 +79,107 @@ fun ItemNewsCategory(news: News, modifier: Modifier) {
                 contentDescription = "img",
 
                 modifier = modifier
-                    .clip(RoundedCornerShape(20.dp))
+                    .clip(RoundedCornerShape(10.dp))
                     .fillMaxWidth()
-                    .padding(1.dp),
-
+                    .padding(paddingDp),
                 alignment = Alignment.Center
             )
 
 
             Text(
-                text = "Unian",
-                modifier = Modifier.padding(8.dp),
-                color = Color.Black
+                text = "Source",
+                modifier = modifier.padding(horizontal = paddingDp, vertical = 12.dp),
+
+                fontFamily = sansationFontFamily,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
+                color = MaterialTheme.colorScheme.outline
             )
             Text(
                 text = news.title,
-                modifier = Modifier.padding(8.dp),
-                color = Color.Black
+                modifier = modifier.padding(horizontal = paddingDp, vertical = 0.dp),
+                fontFamily = interFontFamily,
+                fontWeight = FontWeight.Medium,
+                fontSize = 18.sp,
+                color = MaterialTheme.colorScheme.onBackground
             )
             Text(
                 text = news.value,
-                modifier = Modifier.padding(4.dp),
-                color = Color.Black
+                modifier = modifier.padding(horizontal = paddingDp, vertical = paddingDp),
+                fontFamily = sansationFontFamily,
+                fontWeight = FontWeight.Light,
+                fontSize = 14.sp,
+                color = MaterialTheme.colorScheme.onBackground
             )
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.padding(horizontal = paddingDp, vertical = 12.dp)
+            ) {
                 Text(
                     text = "Ukraine",
-                    modifier = Modifier.padding(8.dp),
-                    color = Color.Black
+                    fontFamily = sansationFontFamily,
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 14.sp,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
                 Text(
                     text = "3 hours argo",
-                    modifier = Modifier.padding(4.dp),
-                    color = Color.Black
+                    modifier = modifier.padding(horizontal = paddingDp),
+                    fontFamily = sansationFontFamily,
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 14.sp,
+                    color = MaterialTheme.colorScheme.outline
                 )
+                Box(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = paddingDp),
+                    contentAlignment = Alignment.CenterEnd
+                ) {
+                    HeartAnimation(modifier)
+                }
+
             }
         }
     }
 }
 
-/*
-  // in the below line, we are creating a card for our list view item.
-            Card(
-                // inside our grid view on below line
-                // we are adding on click for each item of our grid view.
-                onClick = {
-                    // inside on click we are displaying the toast message.
-                    Toast.makeText(
-                        context,
-                        courseList[index].languageName + " selected..",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                },
-                // in the below line, we are adding
-                // padding from our all sides.
-                modifier = Modifier
-                    .padding(8.dp)
-                    .width(120.dp),
 
-                // in the below line, we are adding
-                // elevation for the card.
-                elevation = 6.dp
-            )
-            {
-                // in the below line, we are creating
-                // a row for our list view item.
-                Column(
-                    // for our row we are adding modifier
-                    // to set padding from all sides.
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    // in the below line, inside row we are adding spacer
-                    Spacer(modifier = Modifier.height(5.dp))
+@Composable
+fun HeartAnimation(modifier: Modifier) {
 
-                    // in the below line, we are adding Image to display the image.
-                    Image(
-                        // in the below line, we are specifying the drawable image for our image.
-                        painter = painterResource(id = courseList[index].languageImg),
+    val interactionSource = MutableInteractionSource()
 
-                        // in the below line, we are specifying
-                        // content description for our image
-                        contentDescription = "img",
+    val coroutineScope = rememberCoroutineScope()
 
-                        // in the below line, we are setting height
-                        // and width for our image.
-                        modifier = Modifier
-                            .height(60.dp)
-                            .width(60.dp)
-                            .padding(5.dp),
+    var enabled by remember {
+        mutableStateOf(false)
+    }
 
-                        alignment = Alignment.Center
+    val scale = remember {
+        Animatable(1f)
+    }
+
+    Icon(imageVector = Icons.Outlined.Favorite,
+        contentDescription = "Save",
+        tint = if (enabled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
+        modifier = modifier
+            .scale(scale = scale.value)
+            .size(size = 24.dp)
+            .clickable(
+                interactionSource = interactionSource, indication = null
+            ) {
+                enabled = !enabled
+                coroutineScope.launch {
+                    scale.animateTo(
+                        0.8f,
+                        animationSpec = tween(100),
                     )
-
-                    // in the below line, we are adding spacer between image and a text
-                    Spacer(modifier = Modifier.height(5.dp))
-
-                    // in the below line, we are creating a text.
-                    Text(
-                        // inside the text on below line we are
-                        // setting text as the language name
-                        // from our model class.
-                        text = courseList[index].languageName,
-
-                        // in the below line, we are adding padding
-                        // for our text from all sides.
-                        modifier = Modifier.padding(4.dp),
-
-                        // in the below line, we are adding color for our text
-                        color = Color.Black, textAlign = TextAlign.Center
+                    scale.animateTo(
+                        1f,
+                        animationSpec = tween(100),
                     )
                 }
-            }
- */
+            })
+}

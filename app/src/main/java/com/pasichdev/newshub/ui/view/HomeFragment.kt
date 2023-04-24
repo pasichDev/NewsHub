@@ -13,11 +13,12 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.pasichdev.newshub.ui.theme.titleBoldFont
+import com.pasichdev.newshub.R
+import com.pasichdev.newshub.ui.theme.itimFontFamily
 
 @Composable
 fun HomeScreen() {
@@ -37,7 +38,7 @@ fun HomeScreen() {
 
 @Composable
 fun NewsCategoryScreen(nameCategory: String) {
-    Column() {
+    Column {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -47,24 +48,17 @@ fun NewsCategoryScreen(nameCategory: String) {
         ) {
             Text(
                 text = nameCategory,
-                style = TextStyle(
-                    fontFamily = titleBoldFont,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 24.sp,
-                    lineHeight = 28.sp,
-                    letterSpacing = 0.sp
-                )
+                fontFamily = itimFontFamily,
+                fontWeight = FontWeight.Normal,
+                fontSize = 24.sp,
+                color = MaterialTheme.colorScheme.onBackground
             )
             TextButton(onClick = { /*TODO*/ }) {
                 Text(
-                    text = "See More",
-                    style = TextStyle(
-                        fontFamily = titleBoldFont,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp,
-                        lineHeight = 28.sp,
-                        letterSpacing = 0.sp
-                    ),
+                    text = stringResource(id = R.string.moreNews),
+                    fontFamily = itimFontFamily,
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 16.sp,
                     color = MaterialTheme.colorScheme.primary
                 )
             }

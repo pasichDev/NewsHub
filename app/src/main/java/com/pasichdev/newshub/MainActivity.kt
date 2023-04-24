@@ -24,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,7 +36,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.pasichdev.newshub.data.BottomNavItem
 import com.pasichdev.newshub.ui.theme.AppTheme
-import com.pasichdev.newshub.ui.theme.titleBoldFont
+import com.pasichdev.newshub.ui.theme.itimFontFamily
 import com.pasichdev.newshub.ui.view.HomeScreen
 
 
@@ -64,26 +63,20 @@ fun MainScreen() {
             TopAppBar(
                 title = {
                     // TODO: Упростить этот вариант кода
-                    Row() {
+                    Row {
                         Text(
                             "News ",
-                            color = MaterialTheme.colorScheme.onBackground,
-                            style = TextStyle(
-                                fontFamily = titleBoldFont,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 28.sp,
-                                lineHeight = 28.sp,
-                                letterSpacing = 0.sp
-                            )
+                            fontFamily = itimFontFamily,
+                            fontWeight = FontWeight.Normal,
+                            fontSize = 28.sp,
                         )
                         Text(
-                            "Hub", color = MaterialTheme.colorScheme.primary, style = TextStyle(
-                                fontFamily = titleBoldFont,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 28.sp,
-                                lineHeight = 28.sp,
-                                letterSpacing = 0.sp
-                            )
+                            "Hub",
+                            fontFamily = itimFontFamily,
+                            fontWeight = FontWeight.Normal,
+                            fontSize = 28.sp,
+                            color = MaterialTheme.colorScheme.primary
+
                         )
 
                     }
