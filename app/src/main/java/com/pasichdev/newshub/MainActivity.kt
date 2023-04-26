@@ -35,9 +35,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.pasichdev.newshub.data.BottomNavItem
+import com.pasichdev.newshub.fragment.homeFragment.HomeScreen
 import com.pasichdev.newshub.ui.theme.AppTheme
 import com.pasichdev.newshub.ui.theme.itimFontFamily
-import com.pasichdev.newshub.ui.view.HomeScreen
+import com.pasichdev.newshub.viewmodel.HomeViewModel
 
 
 class MainActivity : ComponentActivity() {
@@ -56,7 +57,7 @@ class MainActivity : ComponentActivity() {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
+fun MainScreen(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
     Scaffold(
         topBar = {
@@ -83,10 +84,10 @@ fun MainScreen() {
 
 
                 },
-                Modifier.background(MaterialTheme.colorScheme.background)
+                modifier.background(MaterialTheme.colorScheme.background)
             )
         },
-        content = { NavigationGraph(navController = navController) },
+        content = { NavigationGraph(navController = navController, modifier) },
         bottomBar = { BottomNavigation(navController = navController) }
     )
 }
@@ -147,10 +148,10 @@ fun BottomNavigation(navController: NavController) {
 
 
 @Composable
-fun NavigationGraph(navController: NavHostController) {
+fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
     NavHost(navController, startDestination = BottomNavItem.Home.screen_route) {
         composable(BottomNavItem.Home.screen_route) {
-            HomeScreen()
+            HomeScreen(modifier, HomeViewModel())
         }
         composable(BottomNavItem.Explore.screen_route) {
             ScreenTest("Explore")
