@@ -2,5 +2,7 @@
     <string name="app_name">News Hub</string>
     <string name="chooseTag">Choose the direction \nof the news you are interested in</string>
     <string name="skip">Skip</string>
+    <string name="editCategory">Select categories to display</string>
     <string name="moreNews">See More</string>
+    <string name="homeFragmentSubTitle">News by categories that you liked are displayed here</string>
 </resources>

@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.pasichdev.newshub.R
 import com.pasichdev.newshub.fragment.homeFragment.screen.ListNews
+import com.pasichdev.newshub.ui.components.SubTitleFragment
 import com.pasichdev.newshub.ui.theme.itimFontFamily
 import com.pasichdev.newshub.utils.Response
 import com.pasichdev.newshub.viewmodel.HomeViewModel
@@ -42,9 +43,23 @@ fun HomeScreen(
             .padding(top = 56.dp, bottom = 50.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        NewsCategoryScreen(nameCategory = "Apple", homeViewModel)
-
+        SubTitleFragment(modifier = modifier)
+        TextButton(onClick = { /*TODO*/ }, modifier = modifier.padding(vertical = 5.dp)) {
+            Text(
+                text = stringResource(id = R.string.editCategory),
+                fontFamily = itimFontFamily,
+                fontWeight = FontWeight.Normal
+            )
+        }
+        ListCategory(modifier = modifier, homeViewModel)
     }
+}
+
+
+@Composable
+fun ListCategory(modifier: Modifier, homeViewModel: HomeViewModel) {
+    NewsCategoryScreen(nameCategory = "Apple", homeViewModel)
+
 }
 
 
