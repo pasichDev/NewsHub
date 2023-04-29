@@ -35,7 +35,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.pasichdev.newshub.data.BottomNavItem
-import com.pasichdev.newshub.fragment.homeFragment.HomeScreen
+import com.pasichdev.newshub.fragment.exploreFragment.ExploreFragment
+import com.pasichdev.newshub.fragment.homeFragment.HomeFragment
 import com.pasichdev.newshub.ui.theme.AppTheme
 import com.pasichdev.newshub.ui.theme.itimFontFamily
 import dagger.hilt.android.AndroidEntryPoint
@@ -142,10 +143,10 @@ fun BottomNavigation(navController: NavController) {
 fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
     NavHost(navController, startDestination = BottomNavItem.Home.screen_route) {
         composable(BottomNavItem.Home.screen_route) {
-            HomeScreen(modifier)
+            HomeFragment(modifier)
         }
         composable(BottomNavItem.Explore.screen_route) {
-            ScreenTest("Explore")
+            ExploreFragment(modifier)
         }
         composable(BottomNavItem.Saved.screen_route) {
             ScreenTest("Saved")

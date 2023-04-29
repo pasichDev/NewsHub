@@ -26,7 +26,7 @@ import com.pasichdev.newshub.utils.Response
 import com.pasichdev.newshub.viewmodel.HomeViewModel
 
 @Composable
-fun HomeScreen(
+fun HomeFragment(
     modifier: Modifier = Modifier,
     homeViewModel: HomeViewModel = hiltViewModel()
 ) {
