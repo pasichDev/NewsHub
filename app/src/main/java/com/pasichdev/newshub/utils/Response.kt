@@ -1,4 +1,4 @@
-package com.pasichdev.newshub
+package com.pasichdev.newshub.utils
 
 
 sealed class Response<out T> {

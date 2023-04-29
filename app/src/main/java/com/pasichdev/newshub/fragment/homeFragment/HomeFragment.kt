@@ -17,24 +17,26 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.pasichdev.newshub.R
-import com.pasichdev.newshub.Response
 import com.pasichdev.newshub.fragment.homeFragment.screen.ListNews
 import com.pasichdev.newshub.ui.theme.itimFontFamily
+import com.pasichdev.newshub.utils.Response
 import com.pasichdev.newshub.viewmodel.HomeViewModel
 
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    homeViewModel: HomeViewModel
+    homeViewModel: HomeViewModel = hiltViewModel()
 ) {
     fun launch() {
         homeViewModel.getNewsCategory("Apple")
     }
 
     launch()
+
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(20.dp)
             .padding(top = 56.dp, bottom = 50.dp)

@@ -1,7 +1,6 @@
-package com.pasichdev.newshub.data
+package com.pasichdev.newshub.data.model
 
 import com.google.gson.annotations.SerializedName
-import com.pasichdev.newshub.data.model.News
 
 data class NewsResponse(
 

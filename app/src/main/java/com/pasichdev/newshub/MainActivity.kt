@@ -38,9 +38,9 @@ import com.pasichdev.newshub.data.BottomNavItem
 import com.pasichdev.newshub.fragment.homeFragment.HomeScreen
 import com.pasichdev.newshub.ui.theme.AppTheme
 import com.pasichdev.newshub.ui.theme.itimFontFamily
-import com.pasichdev.newshub.viewmodel.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
 
@@ -59,65 +59,57 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    // TODO: Упростить этот вариант кода
-                    Row {
-                        Text(
-                            "News ",
-                            fontFamily = itimFontFamily,
-                            fontWeight = FontWeight.Normal,
-                            fontSize = 28.sp,
-                        )
-                        Text(
-                            "Hub",
-                            fontFamily = itimFontFamily,
-                            fontWeight = FontWeight.Normal,
-                            fontSize = 28.sp,
-                            color = MaterialTheme.colorScheme.primary
+    Scaffold(topBar = {
+        TopAppBar(
+            title = {
+                // TODO: Упростить этот вариант кода
+                Row {
+                    Text(
+                        "News ",
+                        fontFamily = itimFontFamily,
+                        fontWeight = FontWeight.Normal,
+                        fontSize = 28.sp,
+                    )
+                    Text(
+                        "Hub",
+                        fontFamily = itimFontFamily,
+                        fontWeight = FontWeight.Normal,
+                        fontSize = 28.sp,
+                        color = MaterialTheme.colorScheme.primary
 
-                        )
+                    )
 
-                    }
+                }
 
 
-                },
-                modifier.background(MaterialTheme.colorScheme.background)
-            )
-        },
+            }, modifier.background(MaterialTheme.colorScheme.background)
+        )
+    },
         content = { NavigationGraph(navController = navController, modifier) },
-        bottomBar = { BottomNavigation(navController = navController) }
-    )
+        bottomBar = { BottomNavigation(navController = navController) })
 }
 
 
 @Composable
 fun BottomNavigation(navController: NavController) {
     val items = listOf(
-        BottomNavItem.Home,
-        BottomNavItem.Explore,
-        BottomNavItem.Saved,
-        BottomNavItem.Settings
+        BottomNavItem.Home, BottomNavItem.Explore, BottomNavItem.Saved, BottomNavItem.Settings
     )
 
     BottomNavigation(
-        backgroundColor = MaterialTheme.colorScheme.background,
-        contentColor = Color.Black
-    )
-    {
+        backgroundColor = MaterialTheme.colorScheme.background, contentColor = Color.Black
+    ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
 
         items.forEach { item ->
-            BottomNavigationItem(
-                icon = {
-                    Icon(
-                        painterResource(id = item.icon), contentDescription = item.title,
-                        tint = if (currentRoute.equals(item.screen_route)) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onBackground
-                    )
-                },
+            BottomNavigationItem(icon = {
+                Icon(
+                    painterResource(id = item.icon),
+                    contentDescription = item.title,
+                    tint = if (currentRoute.equals(item.screen_route)) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onBackground
+                )
+            },
                 label = {
                     Text(
                         text = item.title,
@@ -140,8 +132,7 @@ fun BottomNavigation(navController: NavController) {
                         launchSingleTop = true
                         restoreState = true
                     }
-                }
-            )
+                })
         }
     }
 }
@@ -151,7 +142,7 @@ fun BottomNavigation(navController: NavController) {
 fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
     NavHost(navController, startDestination = BottomNavItem.Home.screen_route) {
         composable(BottomNavItem.Home.screen_route) {
-            HomeScreen(modifier, HomeViewModel())
+            HomeScreen(modifier)
         }
         composable(BottomNavItem.Explore.screen_route) {
             ScreenTest("Explore")

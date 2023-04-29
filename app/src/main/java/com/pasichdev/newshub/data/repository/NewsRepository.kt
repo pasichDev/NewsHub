@@ -1,7 +1,7 @@
 package com.pasichdev.newshub.data.repository
 
-import com.pasichdev.newshub.Response
-import com.pasichdev.newshub.data.NewsResponse
+import com.pasichdev.newshub.data.model.NewsResponse
+import com.pasichdev.newshub.utils.Response
 import kotlinx.coroutines.flow.Flow
 
 
