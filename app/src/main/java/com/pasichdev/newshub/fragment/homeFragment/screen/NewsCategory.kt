@@ -31,6 +31,7 @@ import coil.request.ImageRequest
 import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.ui.theme.interFontFamily
 import com.pasichdev.newshub.ui.theme.sansationFontFamily
+import com.pasichdev.newshub.utils.convertToNewFormat
 import kotlinx.coroutines.launch
 
 
@@ -131,8 +132,9 @@ fun ItemNewsCategory(newsTest: News, modifier: Modifier) {
                      )
 
                  */
+
                 Text(
-                    text = newsTest.publishedAt,
+                    text = convertToNewFormat(newsTest.publishedAt),
                     fontFamily = sansationFontFamily,
                     fontWeight = FontWeight.Normal,
                     fontSize = 14.sp,

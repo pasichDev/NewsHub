@@ -31,7 +31,7 @@ fun HomeFragment(
     homeViewModel: HomeViewModel = hiltViewModel()
 ) {
     fun launch() {
-        homeViewModel.getNewsCategory("Apple")
+        homeViewModel.getNewsCategory("entertainment")
     }
 
     launch()
@@ -58,7 +58,7 @@ fun HomeFragment(
 
 @Composable
 fun ListCategory(modifier: Modifier, homeViewModel: HomeViewModel) {
-    NewsCategoryScreen(nameCategory = "Apple", homeViewModel)
+    NewsCategoryScreen(nameCategory = "entertainment", homeViewModel)
 
 }
 

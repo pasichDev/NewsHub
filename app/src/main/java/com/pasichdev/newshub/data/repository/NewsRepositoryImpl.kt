@@ -18,7 +18,7 @@ class NewsRepositoryImpl @Inject constructor(
     override fun getBusinessNews(category: String): Flow<Response<NewsResponse>> = flow {
         try {
             emit(Response.Loading)
-            val responseApi = apiService.getBusinessNews(category = category, country = "en")
+            val responseApi = apiService.getBusinessNews(category = category, country = "ua")
             emit(Response.Success(responseApi))
         } catch (e: Exception) {
             emit(Response.Failure(e))
