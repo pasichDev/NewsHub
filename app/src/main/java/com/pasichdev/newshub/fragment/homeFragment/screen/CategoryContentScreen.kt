@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.pasichdev.newshub.data.model.News
-import com.pasichdev.newshub.fragment.homeFragment.ItemNewsCategory
+import com.pasichdev.newshub.ui.components.ItemHeadLineNews
 import com.pasichdev.newshub.ui.components.LoadingData
 import com.pasichdev.newshub.ui.components.NotInternetConnection
 
@@ -26,7 +26,7 @@ fun CategoryContent(modifier: Modifier, newsList: LazyPagingItems<News>? = null)
 
             items(newsList.itemCount) { index ->
                 newsList[index].let {
-                    newsList[index]?.let { ItemNewsCategory(it, Modifier) }
+                    newsList[index]?.let { ItemHeadLineNews(it, Modifier) }
 
                 }
             }
@@ -39,6 +39,7 @@ fun CategoryContent(modifier: Modifier, newsList: LazyPagingItems<News>? = null)
 
                         loadState.refresh is LoadState.Error || loadState.append is LoadState.Error -> {
                             NotInternetConnection()
+
                         }
                     }
                 }
