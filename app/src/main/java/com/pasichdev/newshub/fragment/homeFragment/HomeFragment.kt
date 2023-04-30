@@ -9,7 +9,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.pasichdev.newshub.fragment.homeFragment.screen.TabScreen
-import com.pasichdev.newshub.ui.components.SubTitleFragment
 import com.pasichdev.newshub.ui.theme.AppTheme
 import com.pasichdev.newshub.viewmodel.HomeViewModel
 
@@ -22,9 +21,8 @@ fun HomeFragment(
         modifier = modifier
             .fillMaxWidth()
             .padding(20.dp)
-            .padding(top = 56.dp, bottom = 50.dp)
+            .padding(top = 36.dp, bottom = 50.dp)
     ) {
-        SubTitleFragment(modifier = modifier)
         TabScreen(viewModel = homeViewModel, modifier = modifier)
 
     }

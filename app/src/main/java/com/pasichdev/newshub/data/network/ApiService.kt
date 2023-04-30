@@ -12,7 +12,8 @@ interface ApiService {
         @Query("apiKey") key: String = API_KEY,
         @Query("country") country: String,
         @Query("category") category: String,
-        @Query("pageSize") size: Int
+        @Query("pageSize") pageSize: Int = 20,
+        @Query("page") page: Int = 1
     ): NewsResponse
 
 

@@ -19,7 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.pasichdev.newshub.ui.components.LoadingData
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.pasichdev.newshub.ui.theme.itimFontFamily
 import com.pasichdev.newshub.viewmodel.HomeViewModel
 
@@ -33,10 +33,8 @@ fun TabScreen(viewModel: HomeViewModel, modifier: Modifier) {
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = 20.dp)
     ) {
-        ScrollableTabRow(
-            selectedTabIndex = tabIndex,
+        ScrollableTabRow(selectedTabIndex = tabIndex,
             edgePadding = 0.dp,
             indicator = {},
             divider = {}) {
@@ -71,8 +69,12 @@ fun TabScreen(viewModel: HomeViewModel, modifier: Modifier) {
 
             }
         }
-        //   CategoryContentScreen(modifier = modifier, data = tabs[tabIndex])
-        LoadingData()
+        CategoryContent(
+            modifier = modifier,
+            newsList = viewModel.loadCategoryNews(category = tabs[tabIndex], country = "us")
+                .collectAsLazyPagingItems()
+        )
+
     }
 }
 

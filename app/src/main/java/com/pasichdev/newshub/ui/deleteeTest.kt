@@ -24,7 +24,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -38,19 +37,15 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.pasichdev.newshub.R
 import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.ui.theme.interFontFamily
-import com.pasichdev.newshub.ui.theme.itimFontFamily
 import com.pasichdev.newshub.ui.theme.sansationFontFamily
-import com.pasichdev.newshub.utils.Response
 import com.pasichdev.newshub.utils.convertToNewFormat
 import com.pasichdev.newshub.viewmodel.HomeViewModel
 import kotlinx.coroutines.launch
@@ -78,7 +73,7 @@ fun ScreenTest(stingTest: String) {
 fun NewsCategoryScreen(nameCategory: String, homeViewModel: HomeViewModel) {
 
 
-    when (val gamesResponse = homeViewModel.newsState.value) {
+ /*   when (val gamesResponse = homeViewModel.newsState.value) {
         is Response.Loading -> {
             Text(text = "LoadinggList")
         }
@@ -121,7 +116,9 @@ fun NewsCategoryScreen(nameCategory: String, homeViewModel: HomeViewModel) {
         }
 
 
-    }
+
+  */
+    //   }
 
 
 }

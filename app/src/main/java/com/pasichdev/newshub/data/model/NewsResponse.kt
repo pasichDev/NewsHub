@@ -10,6 +10,9 @@ data class NewsResponse(
     @field:SerializedName("count")
     val count: String? = null,
 
+    @field:SerializedName("next")
+    val next: String? = null,
+
     @field:SerializedName("articles")
     val results: List<News> = listOf(),
 )
