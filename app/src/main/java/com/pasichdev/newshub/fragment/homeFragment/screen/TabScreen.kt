@@ -20,13 +20,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.ui.theme.itimFontFamily
 import com.pasichdev.newshub.viewmodel.HomeViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TabScreen(viewModel: HomeViewModel, modifier: Modifier) {
+fun TabScreen(viewModel: HomeViewModel, modifier: Modifier, onClick: (News) -> Unit = {}) {
     var tabIndex by remember { viewModel.categoryNewsIndex }
     val tabs = viewModel.categoryNews
 
@@ -34,7 +35,8 @@ fun TabScreen(viewModel: HomeViewModel, modifier: Modifier) {
         modifier = modifier
             .fillMaxWidth()
     ) {
-        ScrollableTabRow(selectedTabIndex = tabIndex,
+        ScrollableTabRow(
+            selectedTabIndex = tabIndex,
             edgePadding = 0.dp,
             indicator = {},
             divider = {}) {
@@ -72,7 +74,8 @@ fun TabScreen(viewModel: HomeViewModel, modifier: Modifier) {
         CategoryContent(
             modifier = modifier,
             newsList = viewModel.loadCategoryNews(category = tabs[tabIndex], country = "us")
-                .collectAsLazyPagingItems()
+                .collectAsLazyPagingItems(),
+            onClick = onClick
         )
 
     }

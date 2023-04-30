@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
@@ -31,8 +32,13 @@ import com.pasichdev.newshub.utils.convertToNewFormat
 
 var paddingDp = 8.dp
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ItemHeadLineNews(newsTest: News, modifier: Modifier) {
+fun ItemHeadLineNews(
+    news: News,
+    modifier: Modifier,
+    onClick: () -> Unit = {}
+) {
     OutlinedCard(
         modifier = modifier
             .padding(end = paddingDp, top = 10.dp)
@@ -41,12 +47,13 @@ fun ItemHeadLineNews(newsTest: News, modifier: Modifier) {
             containerColor = MaterialTheme.colorScheme.surface,
         ),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.surfaceVariant),
+        onClick = onClick
     ) {
         Column(
             modifier = modifier.padding(paddingDp)
         ) {
             AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current).data(newsTest.urlToImage)
+                model = ImageRequest.Builder(LocalContext.current).data(news.urlToImage)
                     .crossfade(true).build(),
                 contentDescription = "ImageNews",
                 contentScale = ContentScale.Crop,
@@ -55,7 +62,7 @@ fun ItemHeadLineNews(newsTest: News, modifier: Modifier) {
                     .padding(paddingDp)
             )
             Text(
-                text = newsTest.source.name,
+                text = news.source.name,
                 modifier = modifier.padding(horizontal = paddingDp, vertical = 12.dp),
                 fontFamily = sansationFontFamily,
                 fontWeight = FontWeight.Bold,
@@ -63,14 +70,14 @@ fun ItemHeadLineNews(newsTest: News, modifier: Modifier) {
                 color = MaterialTheme.colorScheme.primary
             )
             Text(
-                text = newsTest.title,
+                text = news.title,
                 modifier = modifier.padding(horizontal = paddingDp, vertical = 0.dp),
                 fontFamily = interFontFamily,
                 fontWeight = FontWeight.Medium,
                 fontSize = 18.sp,
                 color = MaterialTheme.colorScheme.onBackground
             )
-            newsTest.description?.let {
+            news.description?.let {
                 Text(
                     text = it,
                     modifier = modifier.padding(horizontal = paddingDp, vertical = paddingDp),
@@ -87,7 +94,7 @@ fun ItemHeadLineNews(newsTest: News, modifier: Modifier) {
             ) {
 
                 Text(
-                    text = convertToNewFormat(newsTest.publishedAt),
+                    text = convertToNewFormat(news.publishedAt),
                     fontFamily = sansationFontFamily,
                     fontWeight = FontWeight.Normal,
                     fontSize = 14.sp,

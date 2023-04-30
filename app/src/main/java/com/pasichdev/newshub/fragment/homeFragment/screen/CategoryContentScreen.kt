@@ -15,7 +15,9 @@ import com.pasichdev.newshub.ui.components.LoadingData
 import com.pasichdev.newshub.ui.components.NotInternetConnection
 
 @Composable
-fun CategoryContent(modifier: Modifier, newsList: LazyPagingItems<News>? = null) {
+fun CategoryContent(
+    modifier: Modifier, newsList: LazyPagingItems<News>? = null, onClick: (News) -> Unit = {}
+) {
     Column(
         modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -25,8 +27,12 @@ fun CategoryContent(modifier: Modifier, newsList: LazyPagingItems<News>? = null)
         LazyColumn {
 
             items(newsList.itemCount) { index ->
-                newsList[index].let {
-                    newsList[index]?.let { ItemHeadLineNews(it, Modifier) }
+
+                newsList[index]?.let { news ->
+                    ItemHeadLineNews(news, Modifier) {
+                        onClick.invoke(news)
+                    }
+
 
                 }
             }
