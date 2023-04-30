@@ -1,7 +1,7 @@
 package com.pasichdev.newshub.data.repository
 
 import com.pasichdev.newshub.data.model.NewsResponse
-import com.pasichdev.newshub.data.services.ApiService
+import com.pasichdev.newshub.data.network.ApiService
 import com.pasichdev.newshub.utils.Response
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

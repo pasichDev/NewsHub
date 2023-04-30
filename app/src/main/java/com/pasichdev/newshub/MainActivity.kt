@@ -34,7 +34,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.pasichdev.newshub.data.BottomNavItem
+import com.pasichdev.newshub.data.data.BottomNavItem
 import com.pasichdev.newshub.fragment.exploreFragment.ExploreFragment
 import com.pasichdev.newshub.fragment.homeFragment.HomeFragment
 import com.pasichdev.newshub.ui.theme.AppTheme

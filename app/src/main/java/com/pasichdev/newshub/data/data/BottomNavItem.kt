@@ -1,4 +1,4 @@
-package com.pasichdev.newshub.data
+package com.pasichdev.newshub.data.data
 
 import com.pasichdev.newshub.R
 

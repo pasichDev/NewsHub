@@ -1,4 +1,4 @@
-package com.pasichdev.newshub.data.services
+package com.pasichdev.newshub.data.network
 
 import com.pasichdev.newshub.data.model.NewsResponse
 import com.pasichdev.newshub.utils.API_KEY

@@ -1,8 +1,11 @@
 package com.pasichdev.newshub.di
 
+import android.app.Application
+import androidx.room.Room
+import com.pasichdev.newshub.data.LocalDatabase
+import com.pasichdev.newshub.data.network.ApiService
 import com.pasichdev.newshub.data.repository.NewsRepository
 import com.pasichdev.newshub.data.repository.NewsRepositoryImpl
-import com.pasichdev.newshub.data.services.ApiService
 import com.pasichdev.newshub.utils.BaseUrlApi
 import dagger.Module
 import dagger.Provides
@@ -12,6 +15,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
+
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -33,14 +38,25 @@ class AppModules {
     }
 
     @Provides
-    fun provideGamesService(
+    fun provideNetworkService(
         retrofit: Retrofit
     ): ApiService = retrofit.create(ApiService::class.java)
 
     @Provides
-    fun provideGamesRepository(
+    fun provideNewsRepository(
         apiService: ApiService,
     ): NewsRepository = NewsRepositoryImpl(
         apiService = apiService,
     )
+
+    @Provides
+    @Singleton
+    fun provideDb(application: Application): LocalDatabase {
+        return Room.databaseBuilder(
+            application,
+            LocalDatabase::class.java,
+            "LocalDatabase"
+        ).build()
+    }
+
 }
