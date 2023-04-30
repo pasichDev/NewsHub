@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.pasichdev.newshub.ui.components.LoadingData
 import com.pasichdev.newshub.ui.theme.itimFontFamily
 import com.pasichdev.newshub.viewmodel.HomeViewModel
 
@@ -70,8 +71,8 @@ fun TabScreen(viewModel: HomeViewModel, modifier: Modifier) {
 
             }
         }
-        CategoryContentScreen(modifier = modifier, data = tabs[tabIndex])
-
+        //   CategoryContentScreen(modifier = modifier, data = tabs[tabIndex])
+        LoadingData()
     }
 }
 

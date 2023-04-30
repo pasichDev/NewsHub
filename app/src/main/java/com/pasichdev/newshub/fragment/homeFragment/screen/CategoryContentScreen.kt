@@ -2,7 +2,7 @@ package com.pasichdev.newshub.fragment.homeFragment.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,10 +14,12 @@ import androidx.compose.ui.text.style.TextAlign
 @Composable
 fun CategoryContentScreen(data: String, modifier: Modifier) {
     Column(
-        modifier = modifier.fillMaxHeight(),
+        modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+
+
         Text(
             text = data,
             color = MaterialTheme.colorScheme.primary,
