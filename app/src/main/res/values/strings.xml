@@ -2,4 +2,10 @@
     <string name="app_name">News Hub</string>
     <string name="moreNews">See More</string>
     <string name="homeFragmentSubTitle">News by categories that you liked are displayed here</string>
+
+    <string name="homeNav">Головне</string>
+    <string name="exploreNav">Досліджувати</string>
+    <string name="savedNav">Збережені</string>
+    <string name="settingsNav">Налаштування</string>
+
 </resources>

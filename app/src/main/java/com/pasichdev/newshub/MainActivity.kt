@@ -29,7 +29,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.pasichdev.newshub.data.data.BottomNavItem
 import com.pasichdev.newshub.fragment.exploreFragment.ExploreFragment
 import com.pasichdev.newshub.fragment.homeFragment.HomeFragment
 import com.pasichdev.newshub.fragment.viewNewsFragment.ViewNewsFragment
@@ -37,7 +36,11 @@ import com.pasichdev.newshub.ui.components.BottomNavigation
 import com.pasichdev.newshub.ui.theme.AppTheme
 import com.pasichdev.newshub.ui.theme.itimFontFamily
 import com.pasichdev.newshub.utils.DETAIL_ARG_NEWS_ID
+import com.pasichdev.newshub.utils.EXPLORE_SCREEN
+import com.pasichdev.newshub.utils.HOME_SCREEN
 import com.pasichdev.newshub.utils.Route
+import com.pasichdev.newshub.utils.SAVED_SCREEN
+import com.pasichdev.newshub.utils.SETTINGS_SCREEN
 import dagger.hilt.android.AndroidEntryPoint
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
@@ -94,8 +97,8 @@ fun MainScreen(modifier: Modifier = Modifier) {
 
 @Composable
 fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
-    NavHost(navController, startDestination = BottomNavItem.Home.screen_route) {
-        composable(BottomNavItem.Home.screen_route) {
+    NavHost(navController, startDestination = HOME_SCREEN) {
+        composable(HOME_SCREEN) {
             HomeFragment(modifier, onClick = { news ->
                 navController.navigate(
                     Route.Detail.createRoute(
@@ -107,13 +110,13 @@ fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
                 )
             })
         }
-        composable(BottomNavItem.Explore.screen_route) {
+        composable(EXPLORE_SCREEN) {
             ExploreFragment(modifier)
         }
-        composable(BottomNavItem.Saved.screen_route) {
+        composable(SAVED_SCREEN) {
             ScreenTest("Saved")
         }
-        composable(BottomNavItem.Settings.screen_route) {
+        composable(SETTINGS_SCREEN) {
             ScreenTest("Settings")
         }
 

@@ -1,11 +1,15 @@
 package com.pasichdev.newshub.data.data
 
 import com.pasichdev.newshub.R
+import com.pasichdev.newshub.utils.EXPLORE_SCREEN
+import com.pasichdev.newshub.utils.HOME_SCREEN
+import com.pasichdev.newshub.utils.SAVED_SCREEN
+import com.pasichdev.newshub.utils.SETTINGS_SCREEN
 
-sealed class BottomNavItem(var title: String, var icon: Int, var screen_route: String) {
+sealed class BottomNavItem(var title: Int, var icon: Int, var screen_route: String) {
 
-    object Home : BottomNavItem("Home", R.drawable.ic_home, "Home")
-    object Explore : BottomNavItem("Explore", R.drawable.ic_explore, "Explore")
-    object Saved : BottomNavItem("Saved", R.drawable.ic_saved, "Saved")
-    object Settings : BottomNavItem("Settings", R.drawable.ic_settings, "Settings")
+    object Home : BottomNavItem(R.string.homeNav, R.drawable.ic_home, HOME_SCREEN)
+    object Explore : BottomNavItem(R.string.exploreNav, R.drawable.ic_explore, EXPLORE_SCREEN)
+    object Saved : BottomNavItem(R.string.savedNav, R.drawable.ic_saved, SAVED_SCREEN)
+    object Settings : BottomNavItem(R.string.settingsNav, R.drawable.ic_settings, SETTINGS_SCREEN)
 }

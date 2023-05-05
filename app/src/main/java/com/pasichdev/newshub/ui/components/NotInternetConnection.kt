@@ -21,7 +21,7 @@ fun NotInternetConnection(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Not Internet Connection",
+            text = "No internet connection",
             Modifier.padding(10.dp),
             style = androidx.compose.material3.MaterialTheme.typography.titleLarge
         )

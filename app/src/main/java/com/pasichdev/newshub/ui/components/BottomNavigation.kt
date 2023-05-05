@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -30,13 +31,13 @@ fun BottomNavigation(navController: NavController) {
             BottomNavigationItem(icon = {
                 Icon(
                     painterResource(id = item.icon),
-                    contentDescription = item.title,
+                    contentDescription = stringResource(id = item.title),
                     tint = if (currentRoute.equals(item.screen_route)) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onBackground
                 )
             },
                 label = {
                     Text(
-                        text = item.title,
+                        text = stringResource(id = item.title),
                         fontSize = 12.sp,
                         color = if (currentRoute.equals(item.screen_route)) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onBackground
                     )
