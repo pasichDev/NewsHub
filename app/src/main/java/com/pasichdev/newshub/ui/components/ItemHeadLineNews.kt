@@ -60,6 +60,7 @@ fun ItemHeadLineNews(
                 modifier = modifier
                     .clip(RoundedCornerShape(10.dp))
                     .padding(paddingDp)
+                    .fillMaxWidth()
             )
             Text(
                 text = news.source.name,
