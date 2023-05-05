@@ -44,7 +44,9 @@ fun CategoryContent(
                         }
 
                         loadState.refresh is LoadState.Error || loadState.append is LoadState.Error -> {
-                            NotInternetConnection()
+                            NotInternetConnection(modifier, refresh = {
+                                retry()
+                            })
 
                         }
                     }

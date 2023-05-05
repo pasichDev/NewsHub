@@ -8,4 +8,7 @@
     <string name="savedNav">Збережені</string>
     <string name="settingsNav">Налаштування</string>
 
+
+    <string name="internetError">No internet connection</string>
+
 </resources>

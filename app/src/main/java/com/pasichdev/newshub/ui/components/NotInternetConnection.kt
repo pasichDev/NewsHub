@@ -9,24 +9,29 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.pasichdev.newshub.R
 import com.pasichdev.newshub.ui.theme.AppTheme
 
 @Composable
-fun NotInternetConnection(modifier: Modifier = Modifier) {
+fun NotInternetConnection(
+    modifier: Modifier = Modifier,
+    refresh: () -> Unit = {}
+) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "No internet connection",
+            text = stringResource(id = R.string.internetError),
             Modifier.padding(10.dp),
             style = androidx.compose.material3.MaterialTheme.typography.titleLarge
         )
 
-        TextButton(onClick = { /*TODO*/ }) {
+        TextButton(onClick = refresh) {
             androidx.compose.material3.Text(
                 text = "Refresh",
                 style = androidx.compose.material3.MaterialTheme.typography.labelMedium
