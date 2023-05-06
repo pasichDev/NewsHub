@@ -26,19 +26,15 @@ class HomeViewModel @Inject constructor(
 
     }
 
+    fun refreshListNews() {
 
-    //  private val responseState = mutableStateOf<Response<NewsResponse>>(Response.Success(null))
-    //  val newsState: State<Response<NewsResponse>> = responseState
+    }
 
+    fun savedNews(news: News) {
 
-    /*   fun getNewsCategory(category: String) {
-           viewModelScope.launch {
-               newsRepository.getBusinessNews(category).collect { response ->
-                   responseState.value = response
-               }
-           }
-       }
+    }
 
+    fun unSavedNews(news: News) {
 
-     */
+    }
 }

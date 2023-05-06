@@ -8,7 +8,7 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("top-headlines")
-    suspend fun getNewsCategory(
+    suspend fun getHeadlinesCategory(
         @Query("apiKey") key: String = API_KEY,
         @Query("country") country: String,
         @Query("category") category: String,

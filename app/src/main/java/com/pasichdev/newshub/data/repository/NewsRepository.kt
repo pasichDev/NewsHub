@@ -6,8 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 
 interface NewsRepository {
-   // fun getBusinessNews(category: String): Flow<Response<NewsResponse>>
-    //  fun getDetailGames(category: String): Flow<Response<News>>
-
+    fun savedNews(news: News)
     fun getCategoryNews(category: String, country: String): Flow<PagingData<News>>
 }

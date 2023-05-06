@@ -3,12 +3,17 @@
     <string name="moreNews">See More</string>
     <string name="homeFragmentSubTitle">News by categories that you liked are displayed here</string>
 
-    <string name="homeNav">Головне</string>
-    <string name="exploreNav">Досліджувати</string>
-    <string name="savedNav">Збережені</string>
-    <string name="settingsNav">Налаштування</string>
-
+    <string name="homeNav">Home</string>
+    <string name="exploreNav">Explore</string>
+    <string name="savedNav">Saved</string>
+    <string name="settingsNav">Settings</string>
 
     <string name="internetError">No internet connection</string>
-
+    <string name="BusinessCat">Business</string>
+    <string name="EntertainmentCat">Entertainment</string>
+    <string name="GeneralCat">General</string>
+    <string name="HealthCat">Health</string>
+    <string name="ScienceCat">Science</string>
+    <string name="SportsCat">Sports</string>
+    <string name="TechnologyCat">Technology</string>
 </resources>

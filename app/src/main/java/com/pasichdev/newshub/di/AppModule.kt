@@ -45,8 +45,10 @@ class AppModules {
     @Provides
     fun provideNewsRepository(
         apiService: ApiService,
+        localDatabase: LocalDatabase
     ): NewsRepository = NewsRepositoryImpl(
         apiService = apiService,
+        localDatabase = localDatabase
     )
 
     @Provides

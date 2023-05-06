@@ -1,22 +1,20 @@
 package com.pasichdev.newshub.data.model
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "saved")
 data class Saved(
-    @PrimaryKey(autoGenerate = false) @ColumnInfo(name = "id") var id: Int,
-    @field:SerializedName("author") val author: String? = null,
 
-    @field:SerializedName("title") val title: String,
+    @PrimaryKey(autoGenerate = false) @field:SerializedName("title") val title: String,
+    val author: String? = null,
 
-    @field:SerializedName("description") val description: String? = null,
+    val description: String = "",
 
-    @field:SerializedName("url") val url: String,
+    val url: String,
 
-    @field:SerializedName("urlToImage") val urlToImage: String,
+    val urlToImage: String,
 
-    @field:SerializedName("publishedAt") val publishedAt: String
+    val publishedAt: String
 )

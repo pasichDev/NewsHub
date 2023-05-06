@@ -1,8 +1,10 @@
 package com.pasichdev.newshub.data.data
 
+import com.pasichdev.newshub.R
+
 object NewsCategory {
 
-    val tagsNews = listOf(
+    val tagsNewsIndex = listOf(
         "Business",
         "Entertainment",
         "General",
@@ -12,5 +14,13 @@ object NewsCategory {
         "Technology"
     )
 
-
+    val tagsNews = listOf(
+        R.string.BusinessCat,
+        R.string.EntertainmentCat,
+        R.string.GeneralCat,
+        R.string.HealthCat,
+        R.string.ScienceCat,
+        R.string.SportsCat,
+        R.string.TechnologyCat,
+    )
 }

@@ -15,14 +15,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.pasichdev.newshub.data.data.NewsCategory.tagsNewsIndex
 import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.ui.theme.itimFontFamily
+import com.pasichdev.newshub.utils.CountryHeadLines
 import com.pasichdev.newshub.viewmodel.HomeViewModel
+import java.util.Locale
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -40,17 +44,18 @@ fun TabScreen(viewModel: HomeViewModel, modifier: Modifier, onClick: (News) -> U
             edgePadding = 0.dp,
             indicator = {},
             divider = {}) {
-            tabs.forEachIndexed { index, title ->
+            tabs.forEachIndexed { index, nameCategory ->
 
-                FilterChip(modifier = modifier
-                    .padding(end = 10.dp)
-                    .padding(vertical = 10.dp),
+                FilterChip(
+                    modifier = modifier
+                        .padding(end = 10.dp)
+                        .padding(vertical = 10.dp),
 
                     selected = tabIndex == index,
                     onClick = { tabIndex = index },
                     label = {
                         Text(
-                            text = title,
+                            text = stringResource(id = nameCategory),
                             fontFamily = itimFontFamily,
                             fontWeight = FontWeight.Normal,
                             fontSize = 14.sp,
@@ -73,7 +78,10 @@ fun TabScreen(viewModel: HomeViewModel, modifier: Modifier, onClick: (News) -> U
         }
         CategoryContent(
             modifier = modifier,
-            newsList = viewModel.loadCategoryNews(category = tabs[tabIndex], country = "us")
+            newsList = viewModel.loadCategoryNews(
+                category = tagsNewsIndex[tabIndex],
+                country = CountryHeadLines.getCountryHeadLines(Locale.getDefault().country)
+            )
                 .collectAsLazyPagingItems(),
             onClick = onClick
         )

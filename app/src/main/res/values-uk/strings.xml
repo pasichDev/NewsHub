@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="app_name">News Hub</string>
+    <string name="moreNews">Побачити більше</string>
+    <string name="homeFragmentSubTitle">Тут відображаються новини за категоріями, які вам сподобалися</string>
+
+    <string name="homeNav">Головне</string>
+    <string name="exploreNav">Досліджувати</string>
+    <string name="savedNav">Збережені</string>
+    <string name="settingsNav">Налаштування</string>
+
+
+    <string name="internetError">Немає підключення до Інтернету</string>
+    <string name="BusinessCat">Бізнес</string>
+    <string name="EntertainmentCat">Розваги</string>
+    <string name="GeneralCat">Загальний</string>
+    <string name="HealthCat">Здоров\'я</string>
+    <string name="ScienceCat">Наука</string>
+    <string name="SportsCat">Спорт</string>
+    <string name="TechnologyCat">Технології</string>
+</resources>

@@ -56,6 +56,7 @@ class MainActivity : ComponentActivity() {
                 MainScreen()
             }
         }
+            //  Log.wtf(TAG, "onCreate: "+   Locale.getDefault().country)
     }
 }
 
