@@ -98,4 +98,6 @@ dependencies {
 
     //SwipeRefresh
     implementation "com.google.accompanist:accompanist-swiperefresh:0.9.1"
+    //WebView
+    implementation "com.google.accompanist:accompanist-webview:0.31.1-alpha"
 }

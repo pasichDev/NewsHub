@@ -1,6 +1,8 @@
 package com.pasichdev.newshub
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -18,27 +20,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
+import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.fragment.exploreFragment.ExploreFragment
 import com.pasichdev.newshub.fragment.homeFragment.HomeFragment
-import com.pasichdev.newshub.fragment.viewNewsFragment.ViewNewsFragment
 import com.pasichdev.newshub.ui.components.BottomNavigation
 import com.pasichdev.newshub.ui.theme.AppTheme
 import com.pasichdev.newshub.ui.theme.itimFontFamily
 import com.pasichdev.newshub.utils.DETAIL_ARG_NEWS_ID
 import com.pasichdev.newshub.utils.EXPLORE_SCREEN
 import com.pasichdev.newshub.utils.HOME_SCREEN
-import com.pasichdev.newshub.utils.Route
 import com.pasichdev.newshub.utils.SAVED_SCREEN
 import com.pasichdev.newshub.utils.SETTINGS_SCREEN
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,7 +56,7 @@ class MainActivity : ComponentActivity() {
                 MainScreen()
             }
         }
-            //  Log.wtf(TAG, "onCreate: "+   Locale.getDefault().country)
+        //  Log.wtf(TAG, "onCreate: "+   Locale.getDefault().country)
     }
 }
 
@@ -100,16 +100,12 @@ fun MainScreen(modifier: Modifier = Modifier) {
 fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
     NavHost(navController, startDestination = HOME_SCREEN) {
         composable(HOME_SCREEN) {
+            val context = LocalContext.current
             HomeFragment(modifier, onClick = { news ->
-                navController.navigate(
-                    Route.Detail.createRoute(
-                        URLEncoder.encode(
-                            news.url,
-                            StandardCharsets.UTF_8.toString()
-                        )
-                    )
-                )
+                openViewNewsActivity(context, news)
             })
+
+
         }
         composable(EXPLORE_SCREEN) {
             ExploreFragment(modifier)
@@ -121,20 +117,21 @@ fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
             ScreenTest("Settings")
         }
 
-        composable(
-            route = Route.Detail.route,
-            arguments = listOf(
-                navArgument(DETAIL_ARG_NEWS_ID) {
-                    type = NavType.StringType
-                }
-            )
-        ) { backStackEntry ->
-            val newsUrls = backStackEntry.arguments?.getString(DETAIL_ARG_NEWS_ID)
-            requireNotNull(newsUrls) { "Error url" }
-            ViewNewsFragment(newsUrl = newsUrls, modifier = modifier)
-
-        }
     }
+}
+
+
+fun openViewNewsActivity(context: Context, news: News) {
+
+    val intent = Intent(context, ViewNewsActivity::class.java)
+    intent.putExtra(
+        DETAIL_ARG_NEWS_ID, URLEncoder.encode(
+            news.url,
+            StandardCharsets.UTF_8.toString()
+        )
+    )
+    context.startActivity(intent)
+
 }
 
 
