@@ -8,7 +8,6 @@ import com.pasichdev.newshub.data.model.Saved
 @Database(
     entities = [Saved::class], version = 1
 )
-//@TypeConverters(SavedTypeConverters::class)
 abstract class LocalDatabase : RoomDatabase() {
 
     abstract val savedDao: SavedDao

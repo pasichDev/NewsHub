@@ -21,11 +21,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.pasichdev.newshub.data.data.NewsCategory.tagsNewsIndex
 import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.ui.theme.itimFontFamily
 import com.pasichdev.newshub.utils.CountryHeadLines
 import com.pasichdev.newshub.viewmodel.HomeViewModel
+import hilt_aggregated_deps.data.NewsCategory.tagsNewsIndex
 import java.util.Locale
 
 

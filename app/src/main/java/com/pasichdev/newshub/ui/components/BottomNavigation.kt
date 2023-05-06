@@ -12,13 +12,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.pasichdev.newshub.data.data.BottomNavItem
+import hilt_aggregated_deps.data.BottomNavItem
 
 
 @Composable
 fun BottomNavigation(navController: NavController) {
     val items = listOf(
-        BottomNavItem.Home, BottomNavItem.Explore, BottomNavItem.Saved, BottomNavItem.Settings
+        BottomNavItem.Home, BottomNavItem.Explore, BottomNavItem.Saved
     )
 
     androidx.compose.material.BottomNavigation(

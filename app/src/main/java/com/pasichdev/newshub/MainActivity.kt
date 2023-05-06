@@ -7,23 +7,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -40,7 +33,6 @@ import com.pasichdev.newshub.utils.DETAIL_ARG_NEWS_ID
 import com.pasichdev.newshub.utils.EXPLORE_SCREEN
 import com.pasichdev.newshub.utils.HOME_SCREEN
 import com.pasichdev.newshub.utils.SAVED_SCREEN
-import com.pasichdev.newshub.utils.SETTINGS_SCREEN
 import dagger.hilt.android.AndroidEntryPoint
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
@@ -56,9 +48,9 @@ class MainActivity : ComponentActivity() {
                 MainScreen()
             }
         }
-        //  Log.wtf(TAG, "onCreate: "+   Locale.getDefault().country)
     }
 }
+
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -111,10 +103,7 @@ fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
             ExploreFragment(modifier)
         }
         composable(SAVED_SCREEN) {
-            ScreenTest("Saved")
-        }
-        composable(SETTINGS_SCREEN) {
-            ScreenTest("Settings")
+            //  ScreenTest("Saved")
         }
 
     }
@@ -131,27 +120,6 @@ fun openViewNewsActivity(context: Context, news: News) {
         )
     )
     context.startActivity(intent)
-
-}
-
-
-@Composable
-fun ScreenTest(stingTest: String) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(colorResource(id = R.color.white))
-            .wrapContentSize(Alignment.Center)
-    ) {
-        Text(
-            text = stingTest,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 20.sp
-        )
-    }
 
 }
 

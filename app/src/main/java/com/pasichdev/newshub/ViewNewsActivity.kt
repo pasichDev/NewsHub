@@ -26,6 +26,11 @@ import java.nio.charset.StandardCharsets
 @AndroidEntryPoint
 class ViewNewsActivity : ComponentActivity() {
 
+    @Composable
+    fun ShareContentChooser(urlNews: String) {
+
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +51,9 @@ class ViewNewsActivity : ComponentActivity() {
         val urlNews = URLDecoder.decode(
             intent.getStringExtra(DETAIL_ARG_NEWS_ID), StandardCharsets.UTF_8.toString()
         )
+
+
+
         Scaffold(topBar = {
             TopAppBar(title = {
 
@@ -59,7 +67,6 @@ class ViewNewsActivity : ComponentActivity() {
                 }
             }, actions = {
                 IconButton(onClick = {
-
                 }) {
                     Icon(imageVector = Icons.Outlined.Share, contentDescription = "Share")
                 }
