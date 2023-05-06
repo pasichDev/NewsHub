@@ -1,36 +1,64 @@
 package com.pasichdev.newshub.ui.components
 
+import android.graphics.Bitmap
+import android.webkit.WebResourceError
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.google.accompanist.web.WebView
-import com.google.accompanist.web.rememberWebViewState
+import androidx.compose.ui.viewinterop.AndroidView
+
 
 @Composable
-fun ViewWebsiteNews(
-    newsUrl: String, modifier: Modifier
-) {
-    val state = rememberWebViewState(newsUrl)
-    WebView(
-        state = state,
-        modifier = modifier
+fun WebViewWithNews(newsUrl: String, modifier: Modifier) {
+    var isLoading by remember { mutableStateOf(true) }
+    var error by remember { mutableStateOf(false) }
 
+    AndroidView(
+        factory = { context ->
+            WebView(context).apply {
+                webViewClient = object : WebViewClient() {
+                    override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                        isLoading = true
+                        super.onPageStarted(view, url, favicon)
+                    }
 
-        // onCreated = { it.settings.javaScriptEnabled = true }
+                    override fun onPageFinished(view: WebView?, url: String?) {
+                        isLoading = false
+                        super.onPageFinished(view, url)
+                    }
+
+                    override fun onReceivedError(
+                        view: WebView?,
+                        request: WebResourceRequest?,
+                        errors: WebResourceError?
+                    ) {
+                        error = true
+                        super.onReceivedError(view, request, errors)
+                    }
+
+                }
+            }
+        },
+        update = {
+            it.loadUrl(newsUrl)
+        },
+        modifier = modifier.fillMaxSize()
     )
 
-    /* AndroidView(factory = {
-         WebView(it).apply {
-             layoutParams = ViewGroup.LayoutParams(
-                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
-             )
-             webViewClient = WebViewClient()
-             loadUrl(newsUrl)
-         }
-     }, update = {
-         it.loadUrl(newsUrl)
-     })
-
-     */
+    if (isLoading) {
+        LoadingData()
+    }
+    if (error) {
+        NotInternetConnection()
+    }
 }
+
 
 

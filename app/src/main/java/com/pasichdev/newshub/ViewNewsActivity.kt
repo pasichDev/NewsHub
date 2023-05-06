@@ -16,7 +16,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.pasichdev.newshub.ui.components.ViewWebsiteNews
+import com.pasichdev.newshub.ui.components.WebViewWithNews
 import com.pasichdev.newshub.ui.theme.AppTheme
 import com.pasichdev.newshub.utils.DETAIL_ARG_NEWS_ID
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,11 +26,7 @@ import java.nio.charset.StandardCharsets
 @AndroidEntryPoint
 class ViewNewsActivity : ComponentActivity() {
 
-    @Composable
-    fun ShareContentChooser(urlNews: String) {
 
-
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,7 +76,7 @@ class ViewNewsActivity : ComponentActivity() {
                 }
             })
         }, content = { padding ->
-            ViewWebsiteNews(
+            WebViewWithNews(
                 newsUrl = urlNews, modifier = modifier.padding(padding)
             )
         })

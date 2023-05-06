@@ -94,7 +94,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
 
     implementation 'com.google.accompanist:accompanist-pager-indicators:0.13.0'
-    implementation('com.google.accompanist:accompanist-pager:0.13.0')
+    implementation 'com.google.accompanist:accompanist-pager:0.13.0'
 
     //SwipeRefresh
     implementation "com.google.accompanist:accompanist-swiperefresh:0.9.1"
