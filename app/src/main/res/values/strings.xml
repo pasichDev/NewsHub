@@ -5,6 +5,7 @@
     <string name="homeNav">Home</string>
     <string name="exploreNav">Explore</string>
     <string name="savedNav">Saved</string>
+    <string name="refresh">Refresh</string>
 
     <string name="internetError">No internet connection</string>
     <string name="BusinessCat">Business</string>

@@ -56,7 +56,7 @@ fun WebViewWithNews(newsUrl: String, modifier: Modifier) {
         LoadingData()
     }
     if (error) {
-        NotInternetConnection()
+        NotInternetConnection(modifier)
     }
 }
 

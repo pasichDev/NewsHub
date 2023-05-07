@@ -8,7 +8,7 @@
     <string name="homeNav">Головне</string>
     <string name="exploreNav">Досліджувати</string>
     <string name="savedNav">Збережені</string>
-
+    <string name="refresh">Оновити</string>
 
     <string name="internetError">Немає підключення до Інтернету</string>
     <string name="BusinessCat">Бізнес</string>
