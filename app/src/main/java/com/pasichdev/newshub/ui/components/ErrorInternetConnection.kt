@@ -33,7 +33,7 @@ fun NotInternetConnection(
             painter = painterResource(id = R.drawable.ic_error_internet),
             contentDescription = stringResource(id = R.string.internetError),
             colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.surfaceVariant),
-            modifier = modifier.padding(vertical = 20.dp)
+            modifier = modifier.padding(bottom = 20.dp)
         )
 
         Text(
