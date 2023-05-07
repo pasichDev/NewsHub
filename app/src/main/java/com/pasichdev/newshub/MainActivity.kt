@@ -20,6 +20,7 @@ import androidx.navigation.compose.rememberNavController
 import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.fragment.exploreFragment.ExploreFragment
 import com.pasichdev.newshub.fragment.homeFragment.HomeFragment
+import com.pasichdev.newshub.fragment.savedFragment.SavedFragment
 import com.pasichdev.newshub.ui.components.BottomNavigation
 import com.pasichdev.newshub.ui.components.ToolbarTitleApp
 import com.pasichdev.newshub.ui.theme.AppTheme
@@ -75,6 +76,7 @@ fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
             ExploreFragment(modifier)
         }
         composable(SAVED_SCREEN) {
+            SavedFragment(modifier)
         }
 
     }
