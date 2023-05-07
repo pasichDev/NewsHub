@@ -6,19 +6,13 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -27,8 +21,8 @@ import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.fragment.exploreFragment.ExploreFragment
 import com.pasichdev.newshub.fragment.homeFragment.HomeFragment
 import com.pasichdev.newshub.ui.components.BottomNavigation
+import com.pasichdev.newshub.ui.components.ToolbarTitleApp
 import com.pasichdev.newshub.ui.theme.AppTheme
-import com.pasichdev.newshub.ui.theme.itimFontFamily
 import com.pasichdev.newshub.utils.DETAIL_ARG_NEWS_ID
 import com.pasichdev.newshub.utils.EXPLORE_SCREEN
 import com.pasichdev.newshub.utils.HOME_SCREEN
@@ -51,40 +45,18 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
+
     Scaffold(topBar = {
-        TopAppBar(
-            title = {
-                // TODO: Упростить этот вариант кода
-                Row {
-                    Text(
-                        "News ",
-                        fontFamily = itimFontFamily,
-                        fontWeight = FontWeight.Normal,
-                        fontSize = 28.sp,
-                    )
-                    Text(
-                        "Hub",
-                        fontFamily = itimFontFamily,
-                        fontWeight = FontWeight.Normal,
-                        fontSize = 28.sp,
-                        color = MaterialTheme.colorScheme.primary
-
-                    )
-
-                }
-
-
-            }, modifier.background(MaterialTheme.colorScheme.background)
-        )
+        TopAppBar(title = { ToolbarTitleApp() })
     },
         content = { NavigationGraph(navController = navController, modifier) },
         bottomBar = { BottomNavigation(navController = navController) })
+
 }
 
 
@@ -103,7 +75,6 @@ fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
             ExploreFragment(modifier)
         }
         composable(SAVED_SCREEN) {
-            //  ScreenTest("Saved")
         }
 
     }

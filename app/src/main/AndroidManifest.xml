@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NewsHub"
+
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
@@ -27,7 +28,7 @@
         <activity
             android:name=".ViewNewsActivity"
             android:exported="true"
-            android:theme="@style/Theme.NewsHub"></activity>
+            android:theme="@style/Theme.NewsHub" />
     </application>
 
 </manifest>
