@@ -11,8 +11,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
-import hilt_aggregated_deps.data.BottomNavItem
+import com.pasichdev.newshub.data.data.BottomNavItem
 
 
 @Composable
@@ -49,10 +50,8 @@ fun BottomNavigation(navController: NavController) {
                 onClick = {
                     navController.navigate(item.screen_route) {
 
-                        navController.graph.startDestinationRoute?.let { screen_route ->
-                            popUpTo(screen_route) {
-                                saveState = true
-                            }
+                        popUpTo(navController.graph.findStartDestination().id) {
+                            saveState = true
                         }
                         launchSingleTop = true
                         restoreState = true
