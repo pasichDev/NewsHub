@@ -2,13 +2,16 @@ package com.pasichdev.newshub.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.pasichdev.newshub.data.dao.SavedDao
-import com.pasichdev.newshub.data.model.Saved
+import androidx.room.TypeConverters
+import com.pasichdev.newshub.data.converter.SourceConverter
+import com.pasichdev.newshub.data.dao.NewsDao
+import com.pasichdev.newshub.data.model.News
 
 @Database(
-    entities = [Saved::class], version = 1
+    entities = [News::class], version = 1
 )
+@TypeConverters(SourceConverter::class)
 abstract class LocalDatabase : RoomDatabase() {
 
-    abstract val savedDao: SavedDao
+    abstract val newsDao: NewsDao
 }

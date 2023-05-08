@@ -31,7 +31,11 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TabScreen(viewModel: HomeViewModel, modifier: Modifier, onClick: (News) -> Unit = {}) {
+fun TabScreen(
+    viewModel: HomeViewModel, modifier: Modifier,
+    onClick: (News) -> Unit = {},
+
+    ) {
     var tabIndex by remember { viewModel.categoryNewsIndex }
     val tabs = viewModel.categoryNews
 
@@ -83,7 +87,8 @@ fun TabScreen(viewModel: HomeViewModel, modifier: Modifier, onClick: (News) -> U
                 country = CountryHeadLines.getCountryHeadLines(Locale.getDefault().country)
             )
                 .collectAsLazyPagingItems(),
-            onClick = onClick
+            onClick = onClick,
+            savedClick = { news: News -> viewModel.savedNews(news) }
         )
 
     }

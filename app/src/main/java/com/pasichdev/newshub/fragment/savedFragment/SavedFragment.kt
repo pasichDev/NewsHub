@@ -1,43 +1,49 @@
 package com.pasichdev.newshub.fragment.savedFragment
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.pasichdev.newshub.viewmodel.ExploreViewModel
+import com.pasichdev.newshub.data.model.News
+import com.pasichdev.newshub.ui.components.ItemHeadLineNews
+import com.pasichdev.newshub.viewmodel.SavedViewModel
 
 @Composable
 fun SavedFragment(
     modifier: Modifier,
-    exploreViewModel: ExploreViewModel = hiltViewModel()
+    savedViewModel: SavedViewModel = hiltViewModel()
 ) {
-    ScreenTest("Saved")
-}
-
-
-@Composable
-fun ScreenTest(stingTest: String) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .wrapContentSize(Alignment.Center)
+    val savedList by savedViewModel.allSavedNews.observeAsState(listOf())
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(20.dp)
+            .padding(top = 36.dp, bottom = 50.dp)
     ) {
-        Text(
-            text = stingTest,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 20.sp
-        )
-    }
+        LazyColumn(
+            modifier = modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
 
+
+            items(savedList) { item: News ->
+                ItemHeadLineNews(news = item, modifier = modifier)
+
+            }
+
+        }
+    }
 }
+
+

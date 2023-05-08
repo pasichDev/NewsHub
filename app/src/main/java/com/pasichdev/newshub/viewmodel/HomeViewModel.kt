@@ -1,5 +1,7 @@
 package com.pasichdev.newshub.viewmodel
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,14 +9,14 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.pasichdev.newshub.data.data.NewsCategory
 import com.pasichdev.newshub.data.model.News
-import com.pasichdev.newshub.data.repository.NewsRepository
+import com.pasichdev.newshub.data.repository.AppRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    var newsRepository: NewsRepository,
+    var appRepository: AppRepository,
 ) : ViewModel() {
 
     val categoryNews = NewsCategory.tagsNews
@@ -22,7 +24,7 @@ class HomeViewModel @Inject constructor(
 
 
     fun loadCategoryNews(category: String, country: String): Flow<PagingData<News>> {
-        return newsRepository.getCategoryNews(category, country).cachedIn(viewModelScope)
+        return appRepository.getCategoryNews(category, country).cachedIn(viewModelScope)
 
     }
 
@@ -31,7 +33,8 @@ class HomeViewModel @Inject constructor(
     }
 
     fun savedNews(news: News) {
-
+        appRepository.savedNews(news)
+        Log.wtf(TAG, "savedNews: ")
     }
 
     fun unSavedNews(news: News) {

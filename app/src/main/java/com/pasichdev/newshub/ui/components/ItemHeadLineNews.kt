@@ -35,9 +35,7 @@ var paddingDp = 8.dp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ItemHeadLineNews(
-    news: News,
-    modifier: Modifier,
-    onClick: () -> Unit = {}
+    news: News, modifier: Modifier, onClick: () -> Unit = {}, savedClick: () -> Unit = {}
 ) {
     OutlinedCard(
         modifier = modifier
@@ -107,7 +105,9 @@ fun ItemHeadLineNews(
                         .padding(horizontal = paddingDp),
                     contentAlignment = Alignment.CenterEnd
                 ) {
-                    SavedIcon(modifier)
+                    SavedIcon(
+                        modifier, savedClick = savedClick
+                    )
                 }
 
             }

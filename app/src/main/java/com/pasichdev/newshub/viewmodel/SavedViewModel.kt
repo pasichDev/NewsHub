@@ -1,11 +1,19 @@
 package com.pasichdev.newshub.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.data.repository.AppRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ExploreViewModel @Inject constructor(
+class SavedViewModel @Inject constructor(
     var appRepository: AppRepository,
-) : ViewModel()
+) : ViewModel() {
+
+
+    val allSavedNews: LiveData<List<News>> = appRepository.getAllSavedNews()
+
+
+}

@@ -1,6 +1,6 @@
 package com.pasichdev.newshub.fragment.homeFragment
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -19,13 +19,17 @@ fun HomeFragment(
     homeViewModel: HomeViewModel = hiltViewModel(),
     onClick: (News) -> Unit = {}
 ) {
-    Column(
+    Box(
         modifier = modifier
             .fillMaxWidth()
             .padding(20.dp)
             .padding(top = 36.dp, bottom = 50.dp)
     ) {
-        TabScreen(viewModel = homeViewModel, modifier = modifier, onClick = onClick)
+        TabScreen(
+            viewModel = homeViewModel,
+            modifier = modifier,
+            onClick = onClick
+        )
 
     }
 }

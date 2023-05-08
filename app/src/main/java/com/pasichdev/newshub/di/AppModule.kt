@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.room.Room
 import com.pasichdev.newshub.data.LocalDatabase
 import com.pasichdev.newshub.data.network.ApiService
-import com.pasichdev.newshub.data.repository.NewsRepository
-import com.pasichdev.newshub.data.repository.NewsRepositoryImpl
+import com.pasichdev.newshub.data.repository.AppRepository
+import com.pasichdev.newshub.data.repository.AppRepositoryImpl
 import com.pasichdev.newshub.utils.BaseUrlApi
 import dagger.Module
 import dagger.Provides
@@ -43,10 +43,10 @@ class AppModules {
     ): ApiService = retrofit.create(ApiService::class.java)
 
     @Provides
-    fun provideNewsRepository(
+    fun provideAppRepository(
         apiService: ApiService,
         localDatabase: LocalDatabase
-    ): NewsRepository = NewsRepositoryImpl(
+    ): AppRepository = AppRepositoryImpl(
         apiService = apiService,
         localDatabase = localDatabase
     )
