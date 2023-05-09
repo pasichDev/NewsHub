@@ -21,7 +21,7 @@ Alternatively, you can build the project from source by following these steps:
 1. Clone the repository:
 
 ```
-git clone https://github.com/pasichDev/NewsApp.git
+git clone https://github.com/pasichDev/NewsHub.git
 ```
 
 
