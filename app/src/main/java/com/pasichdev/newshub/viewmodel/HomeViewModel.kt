@@ -1,7 +1,5 @@
 package com.pasichdev.newshub.viewmodel
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -34,12 +32,9 @@ class HomeViewModel @Inject constructor(
 
     }
 
-    fun savedNews(news: News) {
-        appRepository.savedNews(news)
-        Log.wtf(TAG, "savedNews: ")
+    fun savedNews(news: News, saved: Boolean) {
+        if (saved) appRepository.unSavedNews(news)
+        else appRepository.savedNews(news)
     }
 
-    fun unSavedNews(news: News) {
-
-    }
 }

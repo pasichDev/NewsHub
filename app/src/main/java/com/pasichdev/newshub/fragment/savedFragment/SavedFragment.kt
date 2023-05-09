@@ -21,7 +21,8 @@ import com.pasichdev.newshub.viewmodel.SavedViewModel
 @Composable
 fun SavedFragment(
     modifier: Modifier,
-    savedViewModel: SavedViewModel = hiltViewModel()
+    savedViewModel: SavedViewModel = hiltViewModel(),
+    onClick: (News) -> Unit = {}
 ) {
     val savedList by savedViewModel.allSavedNews.observeAsState(listOf())
     Box(
@@ -40,6 +41,7 @@ fun SavedFragment(
             items(savedList) { item: News ->
                 ItemHeadLineNews(
                     news = item,
+                    onClick = { onClick.invoke(item) },
                     savedNews = true, modifier = modifier
                 )
 

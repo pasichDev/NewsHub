@@ -39,7 +39,7 @@ fun ItemHeadLineNews(
     savedNews: Boolean,
     modifier: Modifier,
     onClick: () -> Unit = {},
-    savedClick: () -> Unit = {}
+    savedClick: (Boolean) -> Unit = {}
 ) {
     OutlinedCard(
         modifier = modifier

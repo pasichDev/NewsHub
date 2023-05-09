@@ -35,7 +35,7 @@ import java.util.Locale
 fun TabScreen(
     viewModel: HomeViewModel, modifier: Modifier,
     onClick: (News) -> Unit = {},
-    ) {
+) {
     var tabIndex by remember { viewModel.categoryNewsIndex }
     val tabs = viewModel.categoryNews
     val savedNewsList by viewModel.allSavedNews.observeAsState(listOf())
@@ -84,7 +84,9 @@ fun TabScreen(
                 country = CountryHeadLines.getCountryHeadLines(Locale.getDefault().country)
             ).collectAsLazyPagingItems(),
             onClick = onClick,
-            savedClick = { news: News -> viewModel.savedNews(news) })
+            savedClick = { news: News, saved: Boolean ->
+                viewModel.savedNews(news, saved)
+            })
 
     }
 }

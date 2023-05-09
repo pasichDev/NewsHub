@@ -63,9 +63,10 @@ fun MainScreen(modifier: Modifier = Modifier) {
 
 @Composable
 fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
+    val context = LocalContext.current
     NavHost(navController, startDestination = HOME_SCREEN) {
         composable(HOME_SCREEN) {
-            val context = LocalContext.current
+
             HomeFragment(modifier, onClick = { news ->
                 openViewNewsActivity(context, news)
             })
@@ -76,7 +77,9 @@ fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
             ExploreFragment(modifier)
         }
         composable(SAVED_SCREEN) {
-            SavedFragment(modifier)
+            SavedFragment(modifier, onClick = { news ->
+                openViewNewsActivity(context, news)
+            })
         }
 
     }
@@ -88,8 +91,7 @@ fun openViewNewsActivity(context: Context, news: News) {
     val intent = Intent(context, ViewNewsActivity::class.java)
     intent.putExtra(
         DETAIL_ARG_NEWS_ID, URLEncoder.encode(
-            news.url,
-            StandardCharsets.UTF_8.toString()
+            news.url, StandardCharsets.UTF_8.toString()
         )
     )
     context.startActivity(intent)

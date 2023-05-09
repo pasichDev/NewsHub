@@ -33,6 +33,12 @@ class AppRepositoryImpl @Inject constructor(
 
     }
 
+    override fun unSavedNews(news: News) {
+        coroutineScope.launch(Dispatchers.IO) {
+            localDatabase.newsDao.unSavedNews(news)
+        }
+    }
+
     override fun getCategoryNews(category: String, country: String): Flow<PagingData<News>> = Pager(
         config = PagingConfig(
             pageSize = PAGE_SIZE_NEWS,

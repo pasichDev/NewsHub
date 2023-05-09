@@ -19,7 +19,7 @@ fun CategoryContent(
     newsList: LazyPagingItems<News>? = null,
     savedNewsList: List<News>,
     onClick: (News) -> Unit = {},
-    savedClick: (News) -> Unit = {}
+    savedClick: (News, Boolean) -> Unit = { _: News, _: Boolean -> }
 ) {
 
     if (newsList == null) return
@@ -43,7 +43,7 @@ fun CategoryContent(
                 ItemHeadLineNews(news,
                     modifier = modifier,
                     savedNews = isSaved,
-                    savedClick = { savedClick.invoke(news) },
+                    savedClick = { saved -> savedClick.invoke(news, saved) },
                     onClick = { onClick.invoke(news) })
             }
 

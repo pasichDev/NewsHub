@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 
 
 @Composable
-fun SavedIcon(modifier: Modifier, saved: Boolean = false, savedClick: () -> Unit = {}) {
+fun SavedIcon(modifier: Modifier, saved: Boolean = false, savedClick: (Boolean) -> Unit = {}) {
 
     val interactionSource = MutableInteractionSource()
 
@@ -45,8 +45,9 @@ fun SavedIcon(modifier: Modifier, saved: Boolean = false, savedClick: () -> Unit
             .clickable(
                 interactionSource = interactionSource, indication = null
             ) {
+                run() { savedClick.invoke(enabled) }
                 enabled = !enabled
-                run(savedClick)
+
                 coroutineScope.launch {
 
                     scale.animateTo(
