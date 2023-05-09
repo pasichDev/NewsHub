@@ -14,6 +14,6 @@ interface NewsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun savedNews(saved: News)
 
-    @Query("SELECT * from saved ORDER BY publishedAt ASC")
+    @Query("SELECT * from saved ORDER BY publishedAt DESC")
     fun loadSavedNews(): LiveData<List<News>>
 }

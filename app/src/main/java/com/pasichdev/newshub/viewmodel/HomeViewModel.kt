@@ -3,6 +3,7 @@ package com.pasichdev.newshub.viewmodel
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -21,6 +22,7 @@ class HomeViewModel @Inject constructor(
 
     val categoryNews = NewsCategory.tagsNews
     val categoryNewsIndex = mutableStateOf(0)
+    val allSavedNews: LiveData<List<News>> = appRepository.getAllSavedNews()
 
 
     fun loadCategoryNews(category: String, country: String): Flow<PagingData<News>> {

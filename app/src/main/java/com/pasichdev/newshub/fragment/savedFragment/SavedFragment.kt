@@ -38,7 +38,10 @@ fun SavedFragment(
 
 
             items(savedList) { item: News ->
-                ItemHeadLineNews(news = item, modifier = modifier)
+                ItemHeadLineNews(
+                    news = item,
+                    savedNews = true, modifier = modifier
+                )
 
             }
 

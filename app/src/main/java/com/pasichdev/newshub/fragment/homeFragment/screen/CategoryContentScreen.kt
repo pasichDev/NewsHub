@@ -17,6 +17,7 @@ import com.pasichdev.newshub.ui.components.NotInternetConnection
 fun CategoryContent(
     modifier: Modifier,
     newsList: LazyPagingItems<News>? = null,
+    savedNewsList: List<News>,
     onClick: (News) -> Unit = {},
     savedClick: (News) -> Unit = {}
 ) {
@@ -28,37 +29,44 @@ fun CategoryContent(
         verticalArrangement = Arrangement.Center
     ) {
 
+
         items(newsList.itemCount) { index ->
 
             newsList[index]?.let { news ->
-                ItemHeadLineNews(news, Modifier,
 
+                var isSaved = false
+                if (savedNewsList.find { sn -> sn.url == news.url } != null) {
+                    isSaved = true
+
+                }
+
+                ItemHeadLineNews(news,
+                    modifier = modifier,
+                    savedNews = isSaved,
                     savedClick = { savedClick.invoke(news) },
-                    onClick = { onClick.invoke(news) }
-                )
-
-
+                    onClick = { onClick.invoke(news) })
             }
-            }
-            newsList.apply {
-                item {
-                    when {
-                        loadState.refresh is LoadState.Loading || loadState.append is LoadState.Loading -> {
-                            LoadingData()
-                        }
 
-                        loadState.refresh is LoadState.Error || loadState.append is LoadState.Error -> {
-                            NotInternetConnection(modifier, refresh = {
-                                retry()
-                            })
+        }
+        newsList.apply {
+            item {
+                when {
+                    loadState.refresh is LoadState.Loading || loadState.append is LoadState.Loading -> {
+                        LoadingData()
+                    }
 
-                        }
+                    loadState.refresh is LoadState.Error || loadState.append is LoadState.Error -> {
+                        NotInternetConnection(modifier, refresh = {
+                            retry()
+                        })
+
                     }
                 }
             }
-
-
         }
+
+
+    }
 
 
 }
