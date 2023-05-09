@@ -4,7 +4,7 @@ Welcome to NewsHub, an Android application built on the news.org API. The main g
 
 ## Features
 
-NewsApp has the following features:
+NewsHub has the following features:
 
 - News categorized by topics
 - Search for news articles by keyword
@@ -14,7 +14,7 @@ NewsApp has the following features:
 
 ## Installation
 
-To install NewsApp, you can download the APK file from the [releases page](https://github.com/pasichDev/NewsHub/releases) and install it on your Android device.
+To install NewsHub, you can download the APK file from the [releases page](https://github.com/pasichDev/NewsHub/releases) and install it on your Android device.
 
 Alternatively, you can build the project from source by following these steps:
 
