@@ -6,14 +6,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.ui.components.ItemHeadLineNews
 
@@ -23,7 +21,8 @@ fun SavedFragment(
     savedViewModel: SavedViewModel = hiltViewModel(),
     onClick: (News) -> Unit = {}
 ) {
-    val savedNews by savedViewModel.savedNews.collectAsState()
+    val state = savedViewModel.state.collectAsStateWithLifecycle()
+    val savedNews = state.value.savedNews
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -37,12 +36,14 @@ fun SavedFragment(
         ) {
 
 
-            items(savedNews) { item: News ->
-                ItemHeadLineNews(
-                    news = item,
-                    onClick = { onClick.invoke(item) },
-                    savedNews = true, modifier = modifier
-                )
+            items(savedNews?.size ?: 0) { it ->
+                savedNews?.get(it)?.let { news ->
+                    ItemHeadLineNews(
+                        news = news,
+                        onClick = { onClick.invoke(news) },
+                        savedNews = true, modifier = modifier
+                    )
+                }
 
             }
 

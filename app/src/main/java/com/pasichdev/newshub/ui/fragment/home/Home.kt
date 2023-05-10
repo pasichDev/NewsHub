@@ -12,6 +12,7 @@ import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -21,6 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.ui.fragment.home.screen.NewsList
 import com.pasichdev.newshub.ui.theme.itimFontFamily
@@ -35,7 +37,9 @@ fun HomeFragment(
 ) {
 
 
-    var tabIndex by remember { homeViewModel.state.value.categoryNewsIndex }
+    val state = homeViewModel.state.collectAsStateWithLifecycle()
+    // TODO: Це індекс вибраної категорії, потрібно її зберігати в state
+    var tabIndex by remember { mutableStateOf(state.value.categoryIndex) }
     val tabs = homeViewModel.categoryNews
     val tabsIndex = homeViewModel.tagsNewsIndex
 
@@ -53,12 +57,16 @@ fun HomeFragment(
             divider = {}) {
             tabs.forEachIndexed { index, nameCategory ->
 
-                FilterChip(modifier = modifier
-                    .padding(end = 10.dp)
-                    .padding(vertical = 10.dp),
+                FilterChip(
+                    modifier = modifier
+                        .padding(end = 10.dp)
+                        .padding(vertical = 10.dp),
 
                     selected = tabIndex == index,
-                    onClick = { tabIndex = index },
+                    onClick = {
+                        tabIndex = index
+                        homeViewModel.refreshCategoryNews(tabsIndex[tabIndex])
+                    },
                     label = {
                         Text(
                             text = stringResource(id = nameCategory),
@@ -86,9 +94,9 @@ fun HomeFragment(
 
         NewsList(
             modifier,
-            homeViewModel,
-            tabsIndex[tabIndex],
-            onClick
+            state,
+            saved = { news: News, b: Boolean -> homeViewModel.savedNews(news, b) },
+            onClick = onClick
         )
 
     }

@@ -51,20 +51,28 @@ class HomeViewModel @Inject constructor(
 
 
     init {
+        val homeState = HomeState()
+
         viewModelScope.launch {
             appRepository.getAllSavedNews().flowOn(Dispatchers.IO).collect { news: List<News> ->
-                _state.value = HomeState(
-                    news = getNews().map { pagingData -> pagingData.map { it } },
-                    savedNews = news
-                )
+                homeState.savedNews = news
             }
         }
+        homeState.news = getNews("Business").map { pagingData -> pagingData.map { it } }
+
+        _state.value = homeState
+
     }
 
 
-    private fun getNews(): Flow<PagingData<News>> {
+    fun refreshCategoryNews(category: String) {
+        _state.value.news = getNews(category).map { pagingData -> pagingData.map { it } }
+    }
+
+
+    private fun getNews(category: String): Flow<PagingData<News>> {
         return appRepository.getCategoryNews(
-            "Business", CountryHeadLines.getCountryHeadLines(
+            category, CountryHeadLines.getCountryHeadLines(
                 Locale.getDefault().country
             )
         ).cachedIn(viewModelScope)
