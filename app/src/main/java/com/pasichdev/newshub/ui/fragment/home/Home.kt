@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.pasichdev.newshub.data.model.News
-import com.pasichdev.newshub.ui.fragment.home.screen.CategoryContent
+import com.pasichdev.newshub.ui.fragment.home.screen.NewsList
 import com.pasichdev.newshub.ui.theme.itimFontFamily
 
 
@@ -75,7 +75,7 @@ fun HomeFragment(
                     ),
                     shape = RoundedCornerShape(10.dp),
                     trailingIcon = {},
-                    leadingIcon = { }
+                    leadingIcon = {}
 
                 )
 
@@ -84,7 +84,7 @@ fun HomeFragment(
         }
 
 
-        CategoryContent(
+        NewsList(
             modifier,
             homeViewModel,
             tabsIndex[tabIndex],

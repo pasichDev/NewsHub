@@ -1,23 +1,27 @@
 package com.pasichdev.newshub.ui.fragment.home
 
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import androidx.paging.map
 import com.pasichdev.newshub.R
+import com.pasichdev.newshub.data.NewsState
 import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.data.repository.AppRepository
+import com.pasichdev.newshub.utils.CountryHeadLines
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -44,18 +48,31 @@ class HomeViewModel @Inject constructor(
         R.string.TechnologyCat,
     )
 
-    private val _newsState = MutableStateFlow<Flow<PagingData<News>>>(emptyFlow())
-    val newsState: StateFlow<Flow<PagingData<News>>> get() = _newsState
+    //saved news
     private val _savedNews = MutableStateFlow(emptyList<News>())
     val savedNews = _savedNews.asStateFlow()
-    val categoryNewsIndex = mutableStateOf(0)
-    private val _isRefreshing = MutableStateFlow(false)
-    val isRefreshing: StateFlow<Boolean>
-        get() = _isRefreshing.asStateFlow()
 
+    //news
+    private val _news = mutableStateOf(NewsState())
+    val news: State<NewsState> = _news
+    val categoryNewsIndex = mutableStateOf(0)
 
     init {
         getSavedNews()
+        _news.value = NewsState(assets = getNews().map { pagingData ->
+            pagingData.map {
+                it
+            }
+        })
+    }
+
+
+    private fun getNews(): Flow<PagingData<News>> {
+        return appRepository.getCategoryNews(
+            "Business", CountryHeadLines.getCountryHeadLines(
+                Locale.getDefault().country
+            )
+        ).cachedIn(viewModelScope)
     }
 
 
@@ -68,10 +85,7 @@ class HomeViewModel @Inject constructor(
     }
 
 
-    fun loadCategoryNews(category: String, country: String): Flow<PagingData<News>> {
-        return appRepository.getCategoryNews(category, country).cachedIn(viewModelScope)
 
-    }
 
 
     fun savedNews(news: News, saved: Boolean) {
