@@ -1,4 +1,4 @@
-package com.pasichdev.newshub.data.data
+package com.pasichdev.newshub.ui
 
 import com.pasichdev.newshub.R
 import com.pasichdev.newshub.utils.EXPLORE_SCREEN

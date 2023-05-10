@@ -4,7 +4,6 @@ import java.util.Locale
 
 class CountryHeadLines {
 
-
     companion object {
         private var DEFAULT_COUNTRY = "us"
 

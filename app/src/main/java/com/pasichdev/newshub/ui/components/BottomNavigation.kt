@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.pasichdev.newshub.data.data.BottomNavItem
+import com.pasichdev.newshub.ui.BottomNavItem
 
 
 @Composable
