@@ -11,7 +11,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -22,12 +21,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.paging.compose.collectAsLazyPagingItems
 import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.ui.fragment.home.screen.CategoryContent
 import com.pasichdev.newshub.ui.theme.itimFontFamily
-import com.pasichdev.newshub.utils.CountryHeadLines
-import java.util.Locale
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,8 +34,6 @@ fun HomeFragment(
     onClick: (News) -> Unit = {},
 ) {
 
-    val news by homeViewModel.newsState.collectAsState()
-    val savedNews by homeViewModel.savedNews.collectAsState()
 
     var tabIndex by remember { homeViewModel.categoryNewsIndex }
     val tabs = homeViewModel.categoryNews
@@ -90,16 +84,11 @@ fun HomeFragment(
         }
 
 
-        CategoryContent(modifier = modifier,
-            savedNewsList = savedNews,
-            newsList = homeViewModel.loadCategoryNews(
-                category = tabsIndex[tabIndex],
-                country = CountryHeadLines.getCountryHeadLines(Locale.getDefault().country)
-            ).collectAsLazyPagingItems(),
-            onClick = onClick,
-            savedClick = { news: News, saved: Boolean ->
-                homeViewModel.savedNews(news, saved)
-            }
+        CategoryContent(
+            modifier,
+            homeViewModel,
+            tabsIndex[tabIndex],
+            onClick
         )
 
     }

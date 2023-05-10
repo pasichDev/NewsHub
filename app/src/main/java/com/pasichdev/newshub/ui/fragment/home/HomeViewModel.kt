@@ -48,9 +48,10 @@ class HomeViewModel @Inject constructor(
     val newsState: StateFlow<Flow<PagingData<News>>> get() = _newsState
     private val _savedNews = MutableStateFlow(emptyList<News>())
     val savedNews = _savedNews.asStateFlow()
-
-
     val categoryNewsIndex = mutableStateOf(0)
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing: StateFlow<Boolean>
+        get() = _isRefreshing.asStateFlow()
 
 
     init {
@@ -59,7 +60,7 @@ class HomeViewModel @Inject constructor(
 
 
     private fun getSavedNews() {
-        viewModelScope.launch { //this: CoroutineScope
+        viewModelScope.launch {
             appRepository.getAllSavedNews().flowOn(Dispatchers.IO).collect { news: List<News> ->
                 _savedNews.update { news }
             }
