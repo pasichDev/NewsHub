@@ -35,7 +35,7 @@ fun HomeFragment(
 ) {
 
 
-    var tabIndex by remember { homeViewModel.categoryNewsIndex }
+    var tabIndex by remember { homeViewModel.state.value.categoryNewsIndex }
     val tabs = homeViewModel.categoryNews
     val tabsIndex = homeViewModel.tagsNewsIndex
 
