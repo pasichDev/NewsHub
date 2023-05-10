@@ -24,12 +24,6 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private var appRepository: AppRepository,
 ) : ViewModel() {
-
-    private val _newsState = MutableStateFlow<Flow<PagingData<News>>>(emptyFlow())
-    val newsState: StateFlow<Flow<PagingData<News>>> get() = _newsState
-    private val _savedNews = MutableStateFlow(emptyList<News>())
-    val savedNews = _savedNews.asStateFlow()
-
     val tagsNewsIndex = listOf(
         "Business",
         "Entertainment",
@@ -49,6 +43,12 @@ class HomeViewModel @Inject constructor(
         R.string.SportsCat,
         R.string.TechnologyCat,
     )
+
+    private val _newsState = MutableStateFlow<Flow<PagingData<News>>>(emptyFlow())
+    val newsState: StateFlow<Flow<PagingData<News>>> get() = _newsState
+    private val _savedNews = MutableStateFlow(emptyList<News>())
+    val savedNews = _savedNews.asStateFlow()
+
 
     val categoryNewsIndex = mutableStateOf(0)
 
