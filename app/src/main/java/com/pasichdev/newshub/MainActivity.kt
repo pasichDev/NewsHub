@@ -18,11 +18,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.pasichdev.newshub.data.model.News
-import com.pasichdev.newshub.fragment.exploreFragment.ExploreFragment
-import com.pasichdev.newshub.fragment.homeFragment.HomeFragment
-import com.pasichdev.newshub.fragment.savedFragment.SavedFragment
 import com.pasichdev.newshub.ui.components.BottomNavigation
 import com.pasichdev.newshub.ui.components.ToolbarTitleApp
+import com.pasichdev.newshub.ui.fragment.explore.ExploreFragment
+import com.pasichdev.newshub.ui.fragment.home.HomeFragment
+import com.pasichdev.newshub.ui.fragment.saved.SavedFragment
 import com.pasichdev.newshub.ui.theme.AppTheme
 import com.pasichdev.newshub.utils.DETAIL_ARG_NEWS_ID
 import com.pasichdev.newshub.utils.EXPLORE_SCREEN
@@ -81,6 +81,7 @@ fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
                 openViewNewsActivity(context, news)
             })
         }
+
 
     }
 }

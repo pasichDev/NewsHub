@@ -1,4 +1,4 @@
-package com.pasichdev.newshub.fragment.exploreFragment
+package com.pasichdev.newshub.ui.fragment.explore
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,7 +12,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.pasichdev.newshub.viewmodel.ExploreViewModel
 
 @Composable
 fun ExploreFragment(

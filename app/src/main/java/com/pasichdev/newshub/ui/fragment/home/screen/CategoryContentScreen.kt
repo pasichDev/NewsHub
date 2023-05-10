@@ -1,4 +1,4 @@
-package com.pasichdev.newshub.fragment.homeFragment.screen
+package com.pasichdev.newshub.ui.fragment.home.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

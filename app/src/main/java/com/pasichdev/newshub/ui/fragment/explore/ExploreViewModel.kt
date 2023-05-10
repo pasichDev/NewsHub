@@ -1,4 +1,4 @@
-package com.pasichdev.newshub.viewmodel
+package com.pasichdev.newshub.ui.fragment.explore
 
 import androidx.lifecycle.ViewModel
 import com.pasichdev.newshub.data.repository.AppRepository

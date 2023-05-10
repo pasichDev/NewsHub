@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">News Hub</string>
-    <string name="homeFragmentSubTitle">News by categories that you liked are displayed here</string>
 
     <string name="homeNav">Home</string>
     <string name="exploreNav">Explore</string>

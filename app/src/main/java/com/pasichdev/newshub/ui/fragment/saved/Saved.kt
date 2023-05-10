@@ -1,4 +1,4 @@
-package com.pasichdev.newshub.fragment.savedFragment
+package com.pasichdev.newshub.ui.fragment.saved
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -8,15 +8,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.ui.components.ItemHeadLineNews
-import com.pasichdev.newshub.viewmodel.SavedViewModel
 
 @Composable
 fun SavedFragment(
@@ -24,7 +23,7 @@ fun SavedFragment(
     savedViewModel: SavedViewModel = hiltViewModel(),
     onClick: (News) -> Unit = {}
 ) {
-    val savedList by savedViewModel.allSavedNews.observeAsState(listOf())
+    val savedNews by savedViewModel.savedNews.collectAsState()
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -38,7 +37,7 @@ fun SavedFragment(
         ) {
 
 
-            items(savedList) { item: News ->
+            items(savedNews) { item: News ->
                 ItemHeadLineNews(
                     news = item,
                     onClick = { onClick.invoke(item) },
@@ -49,6 +48,8 @@ fun SavedFragment(
 
         }
     }
+
+
 }
 
 

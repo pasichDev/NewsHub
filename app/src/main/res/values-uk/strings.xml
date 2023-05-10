@@ -3,7 +3,6 @@
 
 
     <string name="app_name">News Hub</string>
-    <string name="homeFragmentSubTitle">Тут відображаються новини за категоріями, які вам сподобалися</string>
 
     <string name="homeNav">Головне</string>
     <string name="exploreNav">Досліджувати</string>
