@@ -18,4 +18,5 @@
     <string name="SportsCat">Спорт</string>
     <string name="TechnologyCat">Технології</string>
 
+    <string name="savedFragment">Збережені новини</string>
 </resources>

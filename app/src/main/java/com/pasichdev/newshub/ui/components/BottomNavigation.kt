@@ -9,6 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -40,7 +41,8 @@ fun BottomNavigation(navController: NavController) {
                     Text(
                         text = stringResource(id = item.title),
                         fontSize = 12.sp,
-                        color = if (currentRoute.equals(item.screen_route)) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onBackground
+                        color = if (currentRoute.equals(item.screen_route)) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onBackground,
+                        fontWeight = if (currentRoute.equals(item.screen_route)) FontWeight.Bold else FontWeight.Normal
                     )
                 },
                 selectedContentColor = MaterialTheme.colorScheme.primary,

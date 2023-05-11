@@ -1,7 +1,7 @@
 package com.pasichdev.newshub.ui.fragment.saved
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -12,8 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.pasichdev.newshub.R
 import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.ui.components.ItemHeadLineNews
+import com.pasichdev.newshub.ui.components.SubTitleFragment
 
 @Composable
 fun SavedFragment(
@@ -23,12 +25,13 @@ fun SavedFragment(
 ) {
     val state = savedViewModel.state.collectAsStateWithLifecycle()
     val savedNews = state.value.savedNews
-    Box(
+    Column(
         modifier = modifier
             .fillMaxWidth()
             .padding(20.dp)
             .padding(top = 36.dp, bottom = 50.dp)
     ) {
+        SubTitleFragment(modifier = modifier, textTitle = R.string.savedFragment)
         LazyColumn(
             modifier = modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,

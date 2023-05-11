@@ -15,4 +15,5 @@
     <string name="SportsCat">Sports</string>
     <string name="TechnologyCat">Technology</string>
 
+    <string name="savedFragment">Saved news</string>
 </resources>
