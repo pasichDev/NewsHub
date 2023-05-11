@@ -53,7 +53,8 @@ fun NewsList(
                         modifier = modifier,
                         savedNews = isSaved,
                         savedClick = { saved -> saved(it, saved) },
-                        onClick = { onClick.invoke(it) })
+                        onClick = { onClick.invoke(it) }
+                    )
 
                 }
 

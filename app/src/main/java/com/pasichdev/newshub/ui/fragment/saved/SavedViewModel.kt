@@ -28,6 +28,11 @@ class SavedViewModel @Inject constructor(
     }
 
 
+    fun deleteSavedNews(news: News) {
+        viewModelScope.launch(Dispatchers.IO) {
+            appRepository.unSavedNews(news)
+        }
+    }
 
 
 }

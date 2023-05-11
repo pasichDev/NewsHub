@@ -1,6 +1,7 @@
 package com.pasichdev.newshub.ui.components
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,8 +9,11 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
@@ -36,10 +40,11 @@ var paddingDp = 8.dp
 @Composable
 fun ItemHeadLineNews(
     news: News,
-    savedNews: Boolean,
+    savedNews: Boolean = false,
+    savedFragment: Boolean = false,
     modifier: Modifier,
     onClick: () -> Unit = {},
-    savedClick: (Boolean) -> Unit = {}
+    savedClick: (Boolean) -> Unit = {},
 ) {
     OutlinedCard(
         modifier = modifier
@@ -109,9 +114,15 @@ fun ItemHeadLineNews(
                         .padding(horizontal = paddingDp),
                     contentAlignment = Alignment.CenterEnd
                 ) {
-                    SavedIcon(
-                        saved = savedNews, modifier = modifier, savedClick = savedClick
-                    )
+                    if (savedFragment)
+                        Icon(imageVector = Icons.Filled.Delete,
+                            contentDescription = "",
+                            tint = MaterialTheme.colorScheme.outline,
+                            modifier = modifier.clickable { savedClick.invoke(true) })
+                    else
+                        SavedIcon(
+                            saved = savedNews, modifier = modifier, savedClick = savedClick
+                        )
                 }
 
             }

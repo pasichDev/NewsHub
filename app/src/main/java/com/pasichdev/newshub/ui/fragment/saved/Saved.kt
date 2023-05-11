@@ -36,12 +36,14 @@ fun SavedFragment(
         ) {
 
 
-            items(savedNews?.size ?: 0) { it ->
+            items(savedNews?.size ?: 0) {
                 savedNews?.get(it)?.let { news ->
                     ItemHeadLineNews(
                         news = news,
+                        modifier = modifier,
                         onClick = { onClick.invoke(news) },
-                        savedNews = true, modifier = modifier
+                        savedClick = { savedViewModel.deleteSavedNews(news) },
+                        savedFragment = true
                     )
                 }
 
@@ -52,5 +54,7 @@ fun SavedFragment(
 
 
 }
+
+
 
 
