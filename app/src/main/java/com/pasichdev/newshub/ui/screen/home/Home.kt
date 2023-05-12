@@ -27,7 +27,7 @@ import com.pasichdev.newshub.ui.theme.itimFontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeFragment(
+fun HomeScreen(
     modifier: Modifier,
     homeViewModel: HomeViewModel = hiltViewModel(),
     onClick: (News) -> Unit = {},

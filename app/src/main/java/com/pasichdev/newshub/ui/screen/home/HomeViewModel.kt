@@ -40,7 +40,9 @@ class HomeViewModel @Inject constructor(
             _state.update { homeState ->
                 homeState.copy(
                     news = getNews(homeState.tagsNewsIndex[homeState.tabIndex]),
-                    // TODO: Ініціювати список збережених нотаток
+                    savedNews = null
+                    // TODO: Ініціалізувати savedNews
+
                 )
 
             }
