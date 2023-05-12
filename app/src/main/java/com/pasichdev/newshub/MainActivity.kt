@@ -20,9 +20,9 @@ import androidx.navigation.compose.rememberNavController
 import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.ui.components.BottomNavigation
 import com.pasichdev.newshub.ui.components.ToolbarTitleApp
-import com.pasichdev.newshub.ui.fragment.explore.ExploreFragment
-import com.pasichdev.newshub.ui.fragment.home.HomeFragment
-import com.pasichdev.newshub.ui.fragment.saved.SavedFragment
+import com.pasichdev.newshub.ui.screen.explore.ExploreFragment
+import com.pasichdev.newshub.ui.screen.home.HomeFragment
+import com.pasichdev.newshub.ui.screen.saved.SavedFragment
 import com.pasichdev.newshub.ui.theme.AppTheme
 import com.pasichdev.newshub.utils.DETAIL_ARG_NEWS_ID
 import com.pasichdev.newshub.utils.EXPLORE_SCREEN

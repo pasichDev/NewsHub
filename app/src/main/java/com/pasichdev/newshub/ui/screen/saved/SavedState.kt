@@ -1,4 +1,4 @@
-package com.pasichdev.newshub.ui.fragment.saved
+package com.pasichdev.newshub.ui.screen.saved
 
 import com.pasichdev.newshub.data.model.News
 

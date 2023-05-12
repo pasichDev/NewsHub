@@ -1,11 +1,10 @@
-package com.pasichdev.newshub.ui.fragment.home.screen
+package com.pasichdev.newshub.ui.screen.home.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.paging.LoadState
@@ -14,19 +13,19 @@ import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.ui.components.ItemHeadLineNews
 import com.pasichdev.newshub.ui.components.LoadingData
 import com.pasichdev.newshub.ui.components.NotInternetConnection
-import com.pasichdev.newshub.ui.fragment.home.HomeState
+import com.pasichdev.newshub.ui.screen.home.HomeState
 
 @Composable
 fun NewsList(
     modifier: Modifier,
-    state: State<HomeState>,
+    state: HomeState = HomeState(),
     onClick: (News) -> Unit = {},
     saved: (News, Boolean) -> Unit = { _: News, _: Boolean -> }
 ) {
 
 
-    val savedNews = state.value.savedNews
-    val news = state.value.news?.collectAsLazyPagingItems()
+    val savedNews = state.savedNews
+    val news = state.news?.collectAsLazyPagingItems()
 
 
 

@@ -1,4 +1,4 @@
-package com.pasichdev.newshub.ui.fragment.saved
+package com.pasichdev.newshub.ui.screen.saved
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

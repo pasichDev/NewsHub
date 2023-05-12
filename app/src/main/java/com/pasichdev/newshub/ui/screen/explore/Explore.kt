@@ -1,4 +1,4 @@
-package com.pasichdev.newshub.ui.fragment.explore
+package com.pasichdev.newshub.ui.screen.explore
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
