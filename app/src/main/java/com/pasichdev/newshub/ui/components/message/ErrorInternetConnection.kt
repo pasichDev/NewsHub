@@ -1,4 +1,4 @@
-package com.pasichdev.newshub.ui.components
+package com.pasichdev.newshub.ui.components.message
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

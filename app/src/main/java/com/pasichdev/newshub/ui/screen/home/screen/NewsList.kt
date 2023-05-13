@@ -11,8 +11,8 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.ui.components.ItemHeadLineNews
-import com.pasichdev.newshub.ui.components.LoadingData
-import com.pasichdev.newshub.ui.components.NotInternetConnection
+import com.pasichdev.newshub.ui.components.message.LoadingData
+import com.pasichdev.newshub.ui.components.message.NotInternetConnection
 import com.pasichdev.newshub.ui.screen.home.HomeState
 
 @Composable

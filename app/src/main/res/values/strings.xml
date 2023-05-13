@@ -16,4 +16,5 @@
     <string name="TechnologyCat">Technology</string>
 
     <string name="savedFragment">Saved news</string>
+    <string name="savedNewsEmpty">Saved news will be displayed here</string>
 </resources>

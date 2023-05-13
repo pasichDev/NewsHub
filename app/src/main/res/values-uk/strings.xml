@@ -19,4 +19,5 @@
     <string name="TechnologyCat">Технології</string>
 
     <string name="savedFragment">Збережені новини</string>
+    <string name="savedNewsEmpty">Тут відображатимуться збережені новини</string>
 </resources>
