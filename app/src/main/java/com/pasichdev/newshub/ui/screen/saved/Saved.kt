@@ -14,7 +14,7 @@ import com.pasichdev.newshub.ui.components.ItemHeadLineNews
 import com.pasichdev.newshub.ui.components.message.SavedNewsEmpty
 
 @Composable
-fun SavedFragment(
+fun SavedScreen(
     modifier: Modifier,
     savedViewModel: SavedViewModel = hiltViewModel(),
     onClick: (News) -> Unit = {}

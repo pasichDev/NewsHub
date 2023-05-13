@@ -22,7 +22,7 @@ import com.pasichdev.newshub.ui.components.BottomNavigation
 import com.pasichdev.newshub.ui.components.ToolbarTitleApp
 import com.pasichdev.newshub.ui.screen.explore.ExploreFragment
 import com.pasichdev.newshub.ui.screen.home.HomeScreen
-import com.pasichdev.newshub.ui.screen.saved.SavedFragment
+import com.pasichdev.newshub.ui.screen.saved.SavedScreen
 import com.pasichdev.newshub.ui.theme.AppTheme
 import com.pasichdev.newshub.utils.DETAIL_ARG_NEWS_ID
 import com.pasichdev.newshub.utils.EXPLORE_SCREEN
@@ -77,7 +77,7 @@ fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
             ExploreFragment(modifier)
         }
         composable(SAVED_SCREEN) {
-            SavedFragment(modifier, onClick = { news ->
+            SavedScreen(modifier, onClick = { news ->
                 openViewNewsActivity(context, news)
             })
         }

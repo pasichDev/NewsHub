@@ -62,10 +62,11 @@ fun HomeScreen(
                         Text(
                             text = stringResource(id = nameCategory),
                             fontFamily = itimFontFamily,
-                            fontWeight = FontWeight.Normal,
                             fontSize = 14.sp,
                             textAlign = TextAlign.Center,
-                            modifier = modifier.padding(8.dp)
+                            modifier = modifier.padding(8.dp),
+                            color = if (state.tabIndex == index) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onBackground,
+                            fontWeight = if (state.tabIndex == index) FontWeight.Bold else FontWeight.Normal
                         )
                     },
                     colors = FilterChipDefaults.filterChipColors(selectedContainerColor = MaterialTheme.colorScheme.surfaceVariant),
