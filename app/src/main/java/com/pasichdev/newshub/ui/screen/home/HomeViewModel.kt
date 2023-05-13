@@ -37,16 +37,18 @@ class HomeViewModel @Inject constructor(
         state.distinctUntilChangedBy { homeState ->
             homeState.categoryIndex
         }.map {
+
+
             _state.update { homeState ->
                 homeState.copy(
                     news = getNews(homeState.tagsNewsIndex[homeState.tabIndex]),
-                    savedNews = null
-                    // TODO: Ініціалізувати savedNews
+                    savedNews = emptyList() // List<News>
 
                 )
-
             }
+
         }.launchIn(viewModelScope)
+
     }
 
     fun onCategoryChanged(index: Int) {

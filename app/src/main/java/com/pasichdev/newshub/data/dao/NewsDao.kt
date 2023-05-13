@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.pasichdev.newshub.data.model.News
+import com.pasichdev.newshub.data.repository.newsList
 import kotlinx.coroutines.flow.Flow
 
 
@@ -19,5 +20,5 @@ interface NewsDao {
     fun unSavedNews(saved: News)
 
     @Query("SELECT * from saved ORDER BY publishedAt DESC")
-    fun loadSavedNews(): Flow<List<News>>
+    fun loadSavedNews(): Flow<newsList>
 }
