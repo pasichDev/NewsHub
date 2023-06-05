@@ -43,4 +43,6 @@ class AppRepositoryImpl @Inject constructor(
 
 
     override fun getAllSavedNews() = localDatabase.newsDao.loadSavedNews()
+    override fun getNewsToUrl(newsUrl: String): Flow<News> =
+        localDatabase.newsDao.loadSavedNewsToUrl(newsUrl)
 }

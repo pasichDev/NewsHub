@@ -10,4 +10,6 @@ interface AppRepository {
     suspend fun unSavedNews(news: News)
     fun getCategoryNews(category: String, country: String): Flow<PagingData<News>>
     fun getAllSavedNews(): Flow<newsList>
+
+    fun getNewsToUrl(newsUrl: String): Flow<News>
 }

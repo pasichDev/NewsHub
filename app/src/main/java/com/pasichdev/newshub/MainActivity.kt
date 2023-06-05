@@ -17,14 +17,15 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.ui.components.BottomNavigation
 import com.pasichdev.newshub.ui.components.ToolbarTitleApp
 import com.pasichdev.newshub.ui.screen.explore.ExploreFragment
 import com.pasichdev.newshub.ui.screen.home.HomeScreen
 import com.pasichdev.newshub.ui.screen.saved.SavedScreen
+import com.pasichdev.newshub.ui.screen.viewNews.ViewNewsActivity
 import com.pasichdev.newshub.ui.theme.AppTheme
-import com.pasichdev.newshub.utils.DETAIL_ARG_NEWS_ID
+import com.pasichdev.newshub.utils.DETAIL_ARG_NEWS_URL
+import com.pasichdev.newshub.utils.DETAIL_ARG_SAVED_STATUS
 import com.pasichdev.newshub.utils.EXPLORE_SCREEN
 import com.pasichdev.newshub.utils.HOME_SCREEN
 import com.pasichdev.newshub.utils.SAVED_SCREEN
@@ -67,8 +68,8 @@ fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
     NavHost(navController, startDestination = HOME_SCREEN) {
         composable(HOME_SCREEN) {
 
-            HomeScreen(modifier, onClick = { news ->
-                openViewNewsActivity(context, news)
+            HomeScreen(modifier, onClick = { url, saved ->
+                openViewNewsActivity(context, url, saved)
             })
 
 
@@ -77,9 +78,11 @@ fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
             ExploreFragment(modifier)
         }
         composable(SAVED_SCREEN) {
-            SavedScreen(modifier, onClick = { news ->
-                openViewNewsActivity(context, news)
+            SavedScreen(modifier, onClick = { url ->
+                openViewNewsActivity(context, url)
             })
+
+
         }
 
 
@@ -87,13 +90,15 @@ fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
 }
 
 
-fun openViewNewsActivity(context: Context, news: News) {
+fun openViewNewsActivity(context: Context, url: String, saved: Boolean = false) {
 
     val intent = Intent(context, ViewNewsActivity::class.java)
     intent.putExtra(
-        DETAIL_ARG_NEWS_ID, URLEncoder.encode(
-            news.url, StandardCharsets.UTF_8.toString()
+        DETAIL_ARG_NEWS_URL, URLEncoder.encode(
+            url, StandardCharsets.UTF_8.toString()
         )
+    ).putExtra(
+        DETAIL_ARG_SAVED_STATUS, saved
     )
     context.startActivity(intent)
 

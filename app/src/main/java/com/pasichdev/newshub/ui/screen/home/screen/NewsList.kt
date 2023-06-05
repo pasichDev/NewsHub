@@ -19,7 +19,7 @@ import com.pasichdev.newshub.ui.screen.home.HomeState
 fun NewsList(
     modifier: Modifier,
     state: HomeState = HomeState(),
-    onClick: (News) -> Unit = {},
+    onClick: (String, Boolean) -> Unit = { _: String, _: Boolean -> },
     saved: (News, Boolean) -> Unit = { _: News, _: Boolean -> }
 ) {
 
@@ -52,7 +52,7 @@ fun NewsList(
                         modifier = modifier,
                         savedNews = isSaved,
                         savedClick = { saved -> saved(it, saved) },
-                        onClick = { onClick.invoke(it) }
+                        onClick = { saved -> onClick(it.url, saved) }
                     )
 
                 }

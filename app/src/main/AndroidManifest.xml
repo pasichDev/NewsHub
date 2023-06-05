@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ViewNewsActivity"
+            android:name=".ui.screen.viewNews.ViewNewsActivity"
             android:exported="true"
             android:theme="@style/Theme.NewsHub" />
     </application>

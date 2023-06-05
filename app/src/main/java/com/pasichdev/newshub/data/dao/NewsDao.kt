@@ -21,4 +21,7 @@ interface NewsDao {
 
     @Query("SELECT * from saved ORDER BY publishedAt DESC")
     fun loadSavedNews(): Flow<newsList>
+
+    @Query("SELECT * from saved WHERE url = :urlNews")
+    fun loadSavedNewsToUrl(urlNews: String): Flow<News>
 }

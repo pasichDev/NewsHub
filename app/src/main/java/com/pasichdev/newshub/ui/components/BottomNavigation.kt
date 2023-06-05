@@ -20,7 +20,7 @@ import com.pasichdev.newshub.ui.BottomNavItem
 @Composable
 fun BottomNavigation(navController: NavController) {
     val items = listOf(
-        BottomNavItem.Home, BottomNavItem.Explore, BottomNavItem.Saved
+        BottomNavItem.Home, BottomNavItem.Saved
     )
 
     androidx.compose.material.BottomNavigation(

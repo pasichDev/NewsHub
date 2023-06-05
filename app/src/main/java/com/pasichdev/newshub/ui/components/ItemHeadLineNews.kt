@@ -43,8 +43,8 @@ fun ItemHeadLineNews(
     savedNews: Boolean = false,
     savedFragment: Boolean = false,
     modifier: Modifier,
-    onClick: () -> Unit = {},
-    savedClick: (Boolean) -> Unit = {},
+    onClick: (Boolean) -> Unit = {},
+    savedClick: (Boolean) -> Unit = {}
 ) {
     OutlinedCard(
         modifier = modifier
@@ -54,7 +54,8 @@ fun ItemHeadLineNews(
             containerColor = MaterialTheme.colorScheme.surface,
         ),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.surfaceVariant),
-        onClick = onClick
+        onClick = { onClick.invoke(savedNews) }
+
     ) {
         Column(
             modifier = modifier.padding(paddingDp)

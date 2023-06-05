@@ -51,6 +51,7 @@ class HomeViewModel @Inject constructor(
 
     }
 
+
     fun onCategoryChanged(index: Int) {
         viewModelScope.launch {
             _state.update {

@@ -30,7 +30,7 @@ import com.pasichdev.newshub.ui.theme.itimFontFamily
 fun HomeScreen(
     modifier: Modifier,
     homeViewModel: HomeViewModel = hiltViewModel(),
-    onClick: (News) -> Unit = {},
+    onClick: (String, Boolean) -> Unit = { _: String, _: Boolean -> },
 ) {
     val state by homeViewModel.state.collectAsStateWithLifecycle()
 
