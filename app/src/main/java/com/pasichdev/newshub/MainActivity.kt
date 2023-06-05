@@ -1,8 +1,6 @@
 package com.pasichdev.newshub
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,7 +9,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -22,16 +19,11 @@ import com.pasichdev.newshub.ui.components.ToolbarTitleApp
 import com.pasichdev.newshub.ui.screen.explore.ExploreFragment
 import com.pasichdev.newshub.ui.screen.home.HomeScreen
 import com.pasichdev.newshub.ui.screen.saved.SavedScreen
-import com.pasichdev.newshub.ui.screen.viewNews.ViewNewsActivity
 import com.pasichdev.newshub.ui.theme.AppTheme
-import com.pasichdev.newshub.utils.DETAIL_ARG_NEWS_URL
-import com.pasichdev.newshub.utils.DETAIL_ARG_SAVED_STATUS
 import com.pasichdev.newshub.utils.EXPLORE_SCREEN
 import com.pasichdev.newshub.utils.HOME_SCREEN
 import com.pasichdev.newshub.utils.SAVED_SCREEN
 import dagger.hilt.android.AndroidEntryPoint
-import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -64,7 +56,6 @@ fun MainScreen(modifier: Modifier = Modifier) {
 
 @Composable
 fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
-    val context = LocalContext.current
     NavHost(navController, startDestination = HOME_SCREEN) {
         composable(HOME_SCREEN) {
 
@@ -82,21 +73,6 @@ fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
 
 
     }
-}
-
-
-fun openViewNewsActivity(context: Context, url: String, saved: Boolean = false) {
-
-    val intent = Intent(context, ViewNewsActivity::class.java)
-    intent.putExtra(
-        DETAIL_ARG_NEWS_URL, URLEncoder.encode(
-            url, StandardCharsets.UTF_8.toString()
-        )
-    ).putExtra(
-        DETAIL_ARG_SAVED_STATUS, saved
-    )
-    context.startActivity(intent)
-
 }
 
 
