@@ -119,9 +119,10 @@ class ViewNewsActivity : ComponentActivity() {
     ) {
         Scaffold(topBar = {
             TopAppBar(title = {}, navigationIcon = {
-                IconButton(onClick = { finish() }) {
-                    Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "Go Back")
-                }
+                if (!isElevationNewsBox.value)
+                    IconButton(onClick = { finish() }) {
+                        Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "Go Back")
+                    }
             })
         }, content = { padding ->
             val clip = if (isElevationNewsBox.value) {
