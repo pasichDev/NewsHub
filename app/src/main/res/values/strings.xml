@@ -17,4 +17,8 @@
 
     <string name="savedFragment">Saved news</string>
     <string name="savedNewsEmpty">Saved news will be displayed here</string>
+
+    <string name="titleSearchNews">Full Review</string>
+    <string name="openLinkBrowser">View original page</string>
+    <string name="openNewsAuthor">Go to publication page</string>
 </resources>

@@ -84,9 +84,10 @@ private val DarkColors = darkColorScheme(
 
 @Composable
 fun AppTheme(
-  useDarkTheme: Boolean = isSystemInDarkTheme(),
-  dynamicColor: Boolean = false,
-  content: @Composable() () -> Unit
+    useDarkTheme: Boolean = isSystemInDarkTheme(),
+    dynamicColor: Boolean = false,
+    colorNavigationDefault: Boolean = false,
+    content: @Composable() () -> Unit,
 ) {
   val colors = if (!useDarkTheme) {
     LightColors
@@ -115,7 +116,7 @@ fun AppTheme(
                 darkIcons = !useDarkTheme
             )
             systemUiController.setNavigationBarColor(
-                color = colorScheme.background,
+                color = if (colorNavigationDefault) colorScheme.surfaceVariant else colorScheme.background,
                 darkIcons = !useDarkTheme
             )
         }
