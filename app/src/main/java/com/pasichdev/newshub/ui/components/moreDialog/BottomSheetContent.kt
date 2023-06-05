@@ -22,20 +22,25 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.pasichdev.newshub.R
+import com.pasichdev.newshub.ui.components.bottombarviewactivity.BottomAppBarViewNews
+import com.pasichdev.newshub.ui.components.bottombarviewactivity.ClickListenerAppBar
 
 @Composable
-fun BottomSheetContent() {
+fun BottomSheetContent(
+    savedNews: Boolean = false, clickListenerAppBar: ClickListenerAppBar
+) {
     val context = LocalContext.current
     Column {
-        BottomSheetListItem(
-            icon = R.drawable.ic_news_open,
+        BottomAppBarViewNews(savedNews = savedNews, clickListenerAppBar = clickListenerAppBar)
+        BottomSheetListItem(icon = R.drawable.ic_news_open,
             title = stringResource(id = R.string.openLinkBrowser),
             onItemClick = { title ->
                 Toast.makeText(
                     context, title, Toast.LENGTH_SHORT
                 ).show()
             })
-        BottomSheetListItem(icon = R.drawable.ic_open_browser,
+        BottomSheetListItem(
+            icon = R.drawable.ic_open_browser,
             title = stringResource(id = R.string.openNewsAuthor),
             onItemClick = { title ->
                 Toast.makeText(
@@ -75,5 +80,17 @@ fun BottomSheetListItemPreview() {
 @Preview(showBackground = true)
 @Composable
 fun BottomSheetContentPreview() {
-    BottomSheetContent()
+    BottomSheetContent(clickListenerAppBar = object : ClickListenerAppBar {
+        override fun savedNews() {
+        }
+
+        override fun shareNews() {
+        }
+
+        override fun moreNews() {
+        }
+
+        override fun openNewsOtherAuthor() {
+        }
+    })
 }
