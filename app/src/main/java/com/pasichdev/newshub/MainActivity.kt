@@ -16,11 +16,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.pasichdev.newshub.ui.components.BottomNavigation
 import com.pasichdev.newshub.ui.components.ToolbarTitleApp
-import com.pasichdev.newshub.ui.screen.explore.ExploreFragment
 import com.pasichdev.newshub.ui.screen.home.HomeScreen
 import com.pasichdev.newshub.ui.screen.saved.SavedScreen
 import com.pasichdev.newshub.ui.theme.AppTheme
-import com.pasichdev.newshub.utils.EXPLORE_SCREEN
 import com.pasichdev.newshub.utils.HOME_SCREEN
 import com.pasichdev.newshub.utils.SAVED_SCREEN
 import dagger.hilt.android.AndroidEntryPoint
@@ -58,12 +56,8 @@ fun MainScreen(modifier: Modifier = Modifier) {
 fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
     NavHost(navController, startDestination = HOME_SCREEN) {
         composable(HOME_SCREEN) {
-
             HomeScreen(modifier)
 
-        }
-        composable(EXPLORE_SCREEN) {
-            ExploreFragment(modifier)
         }
         composable(SAVED_SCREEN) {
             SavedScreen(modifier)

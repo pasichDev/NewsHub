@@ -16,11 +16,13 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.pasichdev.newshub.ui.screen.viewNews.screen.WebViewWithNews
 import com.pasichdev.newshub.ui.theme.AppTheme
 import com.pasichdev.newshub.utils.DETAIL_ARG_NEWS_URL
 import com.pasichdev.newshub.utils.DETAIL_ARG_SAVED_STATUS
+import com.pasichdev.newshub.utils.shareNews
 import dagger.hilt.android.AndroidEntryPoint
 import java.net.URLDecoder
 import java.nio.charset.StandardCharsets
@@ -50,27 +52,21 @@ class ViewNewsActivity : ComponentActivity() {
             intent.getStringExtra(DETAIL_ARG_NEWS_URL), StandardCharsets.UTF_8.toString()
         )
         val savedNews = intent.getBooleanExtra(DETAIL_ARG_SAVED_STATUS, false)
+        val context = LocalContext.current
 
 
         Scaffold(topBar = {
             TopAppBar(title = {
 
             }, navigationIcon = {
-                IconButton(onClick = {
-                    finish()
-                }) {
-                    Icon(
-                        imageVector = Icons.Filled.ArrowBack, contentDescription = "Go Back"
-                    )
+                IconButton(onClick = { finish() }) {
+                    Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "Go Back")
                 }
             }, actions = {
-                IconButton(onClick = {
-                }) {
+                IconButton(onClick = { shareNews(context, urlNews) }) {
                     Icon(imageVector = Icons.Outlined.Share, contentDescription = "Share")
                 }
-                IconButton(onClick = {
-
-                }) {
+                IconButton(onClick = {}) {
                     Icon(
                         imageVector = Icons.Outlined.Favorite,
                         tint = if (savedNews) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
