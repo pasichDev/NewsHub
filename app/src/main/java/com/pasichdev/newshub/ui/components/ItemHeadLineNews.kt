@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.pasichdev.newshub.data.model.News
+import com.pasichdev.newshub.ui.screen.ClickNews
 import com.pasichdev.newshub.ui.theme.interFontFamily
 import com.pasichdev.newshub.ui.theme.sansationFontFamily
 import com.pasichdev.newshub.utils.convertToNewFormat
@@ -43,8 +44,7 @@ fun ItemHeadLineNews(
     savedNews: Boolean = false,
     savedFragment: Boolean = false,
     modifier: Modifier,
-    onClick: (Boolean) -> Unit = {},
-    savedClick: (Boolean) -> Unit = {}
+    clickNews: ClickNews
 ) {
     OutlinedCard(
         modifier = modifier
@@ -54,7 +54,7 @@ fun ItemHeadLineNews(
             containerColor = MaterialTheme.colorScheme.surface,
         ),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.surfaceVariant),
-        onClick = { onClick.invoke(savedNews) }
+        onClick = { clickNews.clickNews(news.url, savedNews) }
 
     ) {
         Column(
@@ -119,10 +119,12 @@ fun ItemHeadLineNews(
                         Icon(imageVector = Icons.Filled.Delete,
                             contentDescription = "",
                             tint = MaterialTheme.colorScheme.outline,
-                            modifier = modifier.clickable { savedClick.invoke(true) })
+                            modifier = modifier.clickable { clickNews.savedNews(news, true) })
                     else
                         SavedIcon(
-                            saved = savedNews, modifier = modifier, savedClick = savedClick
+                            saved = savedNews,
+                            modifier = modifier,
+                            savedClick = { saved -> clickNews.savedNews(news, saved) }
                         )
                 }
 

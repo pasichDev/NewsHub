@@ -1,5 +1,6 @@
 package com.pasichdev.newshub.ui.screen.home
 
+import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -13,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -21,8 +23,10 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.pasichdev.newshub.data.model.News
+import com.pasichdev.newshub.ui.screen.ClickNews
 import com.pasichdev.newshub.ui.screen.home.screen.NewsList
 import com.pasichdev.newshub.ui.theme.itimFontFamily
+import com.pasichdev.newshub.utils.openViewNewsActivity
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -30,7 +34,16 @@ import com.pasichdev.newshub.ui.theme.itimFontFamily
 fun HomeScreen(
     modifier: Modifier,
     homeViewModel: HomeViewModel = hiltViewModel(),
-    onClick: (String, Boolean) -> Unit = { _: String, _: Boolean -> },
+    context: Context = LocalContext.current,
+    clickNews: ClickNews = object : ClickNews {
+        override fun clickNews(urlNews: String, saved: Boolean) {
+            openViewNewsActivity(context, urlNews, saved)
+        }
+
+        override fun savedNews(news: News, saved: Boolean) {
+            homeViewModel.savedNews(news, saved)
+        }
+    }
 ) {
     val state by homeViewModel.state.collectAsStateWithLifecycle()
 
@@ -41,8 +54,7 @@ fun HomeScreen(
             .padding(20.dp)
             .padding(top = 36.dp, bottom = 50.dp)
     ) {
-        ScrollableTabRow(
-            selectedTabIndex = state.tabIndex,
+        ScrollableTabRow(selectedTabIndex = state.tabIndex,
             edgePadding = 0.dp,
             indicator = {},
             divider = {}) {
@@ -85,12 +97,10 @@ fun HomeScreen(
 
 
         NewsList(
-            modifier,
-            state,
-            saved = { news: News, b: Boolean -> homeViewModel.savedNews(news, b) },
-            onClick = onClick
+            modifier, state, clickNews = clickNews
         )
 
     }
 }
+
 

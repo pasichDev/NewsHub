@@ -68,19 +68,14 @@ fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
     NavHost(navController, startDestination = HOME_SCREEN) {
         composable(HOME_SCREEN) {
 
-            HomeScreen(modifier, onClick = { url, saved ->
-                openViewNewsActivity(context, url, saved)
-            })
-
+            HomeScreen(modifier)
 
         }
         composable(EXPLORE_SCREEN) {
             ExploreFragment(modifier)
         }
         composable(SAVED_SCREEN) {
-            SavedScreen(modifier, onClick = { url ->
-                openViewNewsActivity(context, url)
-            })
+            SavedScreen(modifier)
 
 
         }

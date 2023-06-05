@@ -9,18 +9,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.ui.components.ItemHeadLineNews
 import com.pasichdev.newshub.ui.components.message.LoadingData
 import com.pasichdev.newshub.ui.components.message.NotInternetConnection
+import com.pasichdev.newshub.ui.screen.ClickNews
 import com.pasichdev.newshub.ui.screen.home.HomeState
 
 @Composable
 fun NewsList(
     modifier: Modifier,
     state: HomeState = HomeState(),
-    onClick: (String, Boolean) -> Unit = { _: String, _: Boolean -> },
-    saved: (News, Boolean) -> Unit = { _: News, _: Boolean -> }
+    clickNews: ClickNews
 ) {
 
 
@@ -51,8 +50,7 @@ fun NewsList(
                     ItemHeadLineNews(it,
                         modifier = modifier,
                         savedNews = isSaved,
-                        savedClick = { saved -> saved(it, saved) },
-                        onClick = { saved -> onClick(it.url, saved) }
+                        clickNews = clickNews
                     )
 
                 }
