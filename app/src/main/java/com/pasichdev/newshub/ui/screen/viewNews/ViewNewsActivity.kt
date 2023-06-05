@@ -3,7 +3,10 @@ package com.pasichdev.newshub.ui.screen.viewNews
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.core.TweenSpec
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomSheetScaffold
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
@@ -15,8 +18,14 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -48,6 +57,7 @@ class ViewNewsActivity : ComponentActivity() {
             val context = LocalContext.current
             val coroutineScope = rememberCoroutineScope()
             val scaffoldState = rememberBottomSheetScaffoldState()
+            val isElevationNewsBox = remember { mutableStateOf(false) }
 
 
             AppTheme(colorNavigationDefault = true) {
@@ -66,11 +76,16 @@ class ViewNewsActivity : ComponentActivity() {
                             }
 
                             override fun moreNews() {
+                                isElevationNewsBox.value = !isElevationNewsBox.value
+
                                 coroutineScope.launch {
-                                    if (!scaffoldState.bottomSheetState.isExpanded)
+                                    if (!scaffoldState.bottomSheetState.isExpanded) {
                                         scaffoldState.bottomSheetState.expand()
-                                    else
+
+                                    } else {
                                         scaffoldState.bottomSheetState.collapse()
+                                    }
+
                                 }
                             }
 
@@ -82,7 +97,7 @@ class ViewNewsActivity : ComponentActivity() {
 
                 ) {
 
-                    ViewNewsScreen(urlNews = urlNews)
+                    ViewNewsScreen(urlNews = urlNews, isElevationNewsBox = isElevationNewsBox)
                 }
 
 
@@ -99,22 +114,39 @@ class ViewNewsActivity : ComponentActivity() {
     @Composable
     fun ViewNewsScreen(
         modifier: Modifier = Modifier,
-        urlNews: String
+        urlNews: String,
+        isElevationNewsBox: MutableState<Boolean>
     ) {
         Scaffold(topBar = {
             TopAppBar(title = {}, navigationIcon = {
                 IconButton(onClick = { finish() }) {
                     Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "Go Back")
                 }
-            }, actions = {
-
             })
         }, content = { padding ->
-            WebViewWithNews(
-                newsUrl = urlNews, modifier = modifier.padding(padding)
-            )
-        }, bottomBar = {
+            val clip = if (isElevationNewsBox.value) {
+                10.dp
+            } else {
+                0.dp
+            }
 
+
+            val scale by animateFloatAsState(
+                targetValue = if (isElevationNewsBox.value) 0.9f else 1.0f,
+                animationSpec = TweenSpec(durationMillis = 300)
+            )
+
+
+
+            WebViewWithNews(
+                newsUrl = urlNews,
+                modifier = modifier
+                    .padding(paddingValues = padding)
+                    .scale(scale)
+                    .clip(
+                        RoundedCornerShape(clip)
+                    )
+            )
         })
 
     }

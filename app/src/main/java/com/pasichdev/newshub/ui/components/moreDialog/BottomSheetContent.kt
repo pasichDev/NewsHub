@@ -57,17 +57,17 @@ fun BottomSheetListItem(icon: Int, title: String, onItemClick: (String) -> Unit)
             .fillMaxWidth()
             .clickable(onClick = { onItemClick(title) })
             .height(55.dp)
-            .background(color = MaterialTheme.colorScheme.surface)
+            .background(color = MaterialTheme.colorScheme.surfaceVariant)
             .padding(start = 15.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
             painter = painterResource(id = icon),
             contentDescription = "Share",
-            tint = MaterialTheme.colorScheme.outline
+            tint = MaterialTheme.colorScheme.onSurfaceVariant
         )
         Spacer(modifier = Modifier.width(20.dp))
-        Text(text = title, color = MaterialTheme.colorScheme.outline)
+        Text(text = title, color = MaterialTheme.colorScheme.onSurfaceVariant)
     }
 }
 

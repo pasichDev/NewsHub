@@ -6,8 +6,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.Favorite
-import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ButtonDefaults
@@ -16,6 +17,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
@@ -29,18 +32,24 @@ fun BottomAppBarViewNews(
     clickListenerAppBar: ClickListenerAppBar
 
 ) {
-    BottomAppBar(modifier = Modifier
-        .height(72.dp)
-        .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)),
-        contentColor = MaterialTheme.colorScheme.surfaceVariant,
+    val isPressed = remember { mutableStateOf(false) }
+
+    BottomAppBar(
+        modifier = Modifier
+            .height(72.dp)
+            .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)),
+        containerColor = MaterialTheme.colorScheme.surfaceVariant,
         actions = {
             OutlinedButton(
                 onClick = { clickListenerAppBar.openNewsOtherAuthor() },
                 modifier = modifier.padding(start = 15.dp),
-                colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.outline)
+                colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.onSurfaceVariant)
 
             ) {
-                Text(text = stringResource(id = R.string.titleSearchNews))
+                Text(
+                    text = stringResource(id = R.string.titleSearchNews),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
 
             }
         }, floatingActionButton = {
@@ -51,20 +60,30 @@ fun BottomAppBarViewNews(
                     Icon(
                         imageVector = Icons.Outlined.Share,
                         contentDescription = "Share",
-                        tint = MaterialTheme.colorScheme.outline
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
                 IconButton(onClick = { clickListenerAppBar.savedNews() }) {
                     Icon(
                         imageVector = Icons.Outlined.Favorite,
-                        tint = if (savedNews) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
+                        tint = if (savedNews) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
                         contentDescription = "Add Save"
                     )
                 }
-                IconButton(onClick = { clickListenerAppBar.moreNews() }) {
+                IconButton(onClick = {
+                    clickListenerAppBar.moreNews()
+                    isPressed.value = !isPressed.value
+                }) {
+
+                    val icon = if (isPressed.value) {
+                        Icons.Filled.Close
+                    } else {
+                        Icons.Filled.MoreVert
+                    }
+
                     Icon(
-                        imageVector = Icons.Outlined.MoreVert,
-                        tint = MaterialTheme.colorScheme.outline,
+                        imageVector = icon,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
                         contentDescription = "More"
                     )
                 }
