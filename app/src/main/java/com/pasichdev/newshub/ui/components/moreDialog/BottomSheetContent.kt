@@ -81,13 +81,13 @@ fun BottomSheetListItemPreview() {
 @Composable
 fun BottomSheetContentPreview() {
     BottomSheetContent(clickListenerAppBar = object : ClickListenerAppBar {
-        override fun savedNews() {
+        override fun saved() {
         }
 
-        override fun shareNews() {
+        override fun share() {
         }
 
-        override fun moreNews() {
+        override fun more() {
         }
 
         override fun openNewsOtherAuthor() {

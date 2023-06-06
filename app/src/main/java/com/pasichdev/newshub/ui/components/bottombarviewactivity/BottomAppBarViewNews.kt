@@ -56,14 +56,14 @@ fun BottomAppBarViewNews(
             Row(
                 modifier = modifier.padding(end = 10.dp)
             ) {
-                IconButton(onClick = { clickListenerAppBar.shareNews() }) {
+                IconButton(onClick = { clickListenerAppBar.share() }) {
                     Icon(
                         imageVector = Icons.Outlined.Share,
                         contentDescription = "Share",
                         tint = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
-                IconButton(onClick = { clickListenerAppBar.savedNews() }) {
+                IconButton(onClick = { clickListenerAppBar.saved() }) {
                     Icon(
                         imageVector = Icons.Outlined.Favorite,
                         tint = if (savedNews) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
@@ -71,7 +71,7 @@ fun BottomAppBarViewNews(
                     )
                 }
                 IconButton(onClick = {
-                    clickListenerAppBar.moreNews()
+                    clickListenerAppBar.more()
                     isPressed.value = !isPressed.value
                 }) {
 
