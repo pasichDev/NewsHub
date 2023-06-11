@@ -36,8 +36,8 @@ fun HomeScreen(
     homeViewModel: HomeViewModel = hiltViewModel(),
     context: Context = LocalContext.current,
     clickNews: ClickNews = object : ClickNews {
-        override fun clickNews(urlNews: String, saved: Boolean) {
-            openViewNewsActivity(context, urlNews, saved)
+        override fun clickNews(news: News, saved: Boolean) {
+            openViewNewsActivity(context, news, saved)
         }
 
         override fun savedNews(news: News, saved: Boolean) {

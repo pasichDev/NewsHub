@@ -54,7 +54,7 @@ fun ItemHeadLineNews(
             containerColor = MaterialTheme.colorScheme.surface,
         ),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.surfaceVariant),
-        onClick = { clickNews.clickNews(news.url, savedNews) }
+        onClick = { clickNews.clickNews(news, savedNews) }
 
     ) {
         Column(
@@ -70,14 +70,18 @@ fun ItemHeadLineNews(
                     .padding(paddingDp)
                     .fillMaxWidth()
             )
-            Text(
-                text = news.source.name,
-                modifier = modifier.padding(horizontal = paddingDp, vertical = 12.dp),
-                fontFamily = sansationFontFamily,
-                fontWeight = FontWeight.Bold,
-                fontSize = 14.sp,
-                color = MaterialTheme.colorScheme.primary
-            )
+            news.source?.let {
+                it.name?.let { it1 ->
+                    Text(
+                        text = it1,
+                        modifier = modifier.padding(horizontal = paddingDp, vertical = 12.dp),
+                        fontFamily = sansationFontFamily,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 14.sp,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+            }
             Text(
                 text = news.title,
                 modifier = modifier.padding(horizontal = paddingDp, vertical = 0.dp),

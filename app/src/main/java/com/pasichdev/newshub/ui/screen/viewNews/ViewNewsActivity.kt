@@ -34,18 +34,18 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.web.WebView
 import com.google.accompanist.web.rememberWebViewState
+import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.ui.components.bottombarviewactivity.ClickListenerAppBar
 import com.pasichdev.newshub.ui.components.moreDialog.BottomSheetContent
 import com.pasichdev.newshub.ui.theme.AppTheme
-import com.pasichdev.newshub.utils.DETAIL_ARG_NEWS_URL
+import com.pasichdev.newshub.utils.DETAIL_ARG_NEWS
 import com.pasichdev.newshub.utils.DETAIL_ARG_SAVED_STATUS
 import com.pasichdev.newshub.utils.shareNews
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.net.URLDecoder
-import java.nio.charset.StandardCharsets
 
 @AndroidEntryPoint
 class ViewNewsActivity : ComponentActivity() {
@@ -55,36 +55,32 @@ class ViewNewsActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         setContent {
-            val urlNews = URLDecoder.decode(
-                intent.getStringExtra(DETAIL_ARG_NEWS_URL), StandardCharsets.UTF_8.toString()
-            )
+            val viewModel: ViewNewsViewModel = hiltViewModel()
+            val news: News? = intent.getParcelableExtra(DETAIL_ARG_NEWS)
             val savedNews = intent.getBooleanExtra(DETAIL_ARG_SAVED_STATUS, false)
             val context = LocalContext.current
+            val uriHandler = LocalUriHandler.current
             val coroutineScope = rememberCoroutineScope()
-
             val scaffoldState = rememberBottomSheetScaffoldState()
             val isElevationNewsBox = remember { mutableStateOf(false) }
-            val uriHandler = LocalUriHandler.current
+
 
 
             AppTheme(colorNavigationDefault = true) {
                 LaunchedEffect(scaffoldState) {
-                    snapshotFlow { scaffoldState.bottomSheetState.currentValue }
-                        .collect { value ->
-                            when (value) {
-                                BottomSheetValue.Collapsed -> {
-                                    isElevationNewsBox.value = false
+                    snapshotFlow { scaffoldState.bottomSheetState.currentValue }.collect {
+                        when (it) {
+                            BottomSheetValue.Collapsed -> {
+                                isElevationNewsBox.value = false
+                            }
 
-                                }
-
-                                BottomSheetValue.Expanded -> {
-                                    isElevationNewsBox.value = true
-
-                                }
-
+                            BottomSheetValue.Expanded -> {
+                                isElevationNewsBox.value = true
                             }
                         }
+                    }
                 }
 
                 BottomSheetScaffold(
@@ -95,15 +91,18 @@ class ViewNewsActivity : ComponentActivity() {
                             savedNews = savedNews,
                             clickListenerAppBar = object : ClickListenerAppBar {
                                 override fun saved() {
-                                    TODO("Not yet implemented")
+                                    if (news != null) {
+                                        viewModel.savedNews(news, savedNews)
+                                    }
                                 }
 
                                 override fun share() {
-                                    shareNews(context, urlNews)
+                                    if (news != null) {
+                                        shareNews(context, news.url)
+                                    }
                                 }
 
                                 override fun more() {
-
                                 coroutineScope.launch {
                                     if (!scaffoldState.bottomSheetState.isExpanded) {
                                         scaffoldState.bottomSheetState.expand()
@@ -120,7 +119,9 @@ class ViewNewsActivity : ComponentActivity() {
                                 }
 
                                 override fun openBrowser() {
-                                    uriHandler.openUri(urlNews)
+                                    if (news != null) {
+                                        uriHandler.openUri(news.url)
+                                    }
                                 }
                             })
 
@@ -128,7 +129,9 @@ class ViewNewsActivity : ComponentActivity() {
 
                 ) {
 
-                    ViewNewsScreen(urlNews = urlNews, isElevationNewsBox = isElevationNewsBox)
+                    if (news != null) {
+                        ViewNewsScreen(urlNews = news.url, isElevationNewsBox = isElevationNewsBox)
+                    }
                 }
 
 

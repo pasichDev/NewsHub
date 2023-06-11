@@ -23,8 +23,8 @@ fun SavedScreen(
     savedViewModel: SavedViewModel = hiltViewModel(),
     context: Context = LocalContext.current,
     clickNews: ClickNews = object : ClickNews {
-        override fun clickNews(urlNews: String, saved: Boolean) {
-            openViewNewsActivity(context, urlNews, true)
+        override fun clickNews(news: News, saved: Boolean) {
+            openViewNewsActivity(context, news, true)
         }
 
         override fun savedNews(news: News, saved: Boolean) {

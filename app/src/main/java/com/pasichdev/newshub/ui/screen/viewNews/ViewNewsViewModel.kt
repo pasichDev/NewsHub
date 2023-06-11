@@ -6,9 +6,6 @@ import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.data.repository.AppRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,10 +13,6 @@ import javax.inject.Inject
 class ViewNewsViewModel @Inject constructor(
     private var appRepository: AppRepository,
 ) : ViewModel() {
-
-    private val _state = MutableStateFlow(ViewNewsState())
-    val state: StateFlow<ViewNewsState> = _state.asStateFlow()
-
 
     fun savedNews(news: News, saved: Boolean) {
         if (saved) {

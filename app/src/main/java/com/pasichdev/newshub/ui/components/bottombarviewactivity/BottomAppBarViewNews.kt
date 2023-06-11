@@ -36,6 +36,7 @@ fun BottomAppBarViewNews(
 
 ) {
     val isPressed = remember { mutableStateOf(false) }
+    val isSaved = remember { mutableStateOf(savedNews) }
 
     BottomAppBar(
         modifier = Modifier
@@ -65,6 +66,7 @@ fun BottomAppBarViewNews(
             Row(
                 modifier = modifier.padding(end = 10.dp)
             ) {
+
                 IconButton(onClick = { clickListenerAppBar.share() }) {
                     Icon(
                         imageVector = Icons.Outlined.Share,
@@ -72,10 +74,13 @@ fun BottomAppBarViewNews(
                         tint = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
-                IconButton(onClick = { clickListenerAppBar.saved() }) {
+                IconButton(onClick = {
+                    clickListenerAppBar.saved()
+                    isSaved.value = !isSaved.value
+                }) {
                     Icon(
                         imageVector = Icons.Outlined.Favorite,
-                        tint = if (savedNews) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
+                        tint = if (isSaved.value) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
                         contentDescription = "Add Save"
                     )
                 }
