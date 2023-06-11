@@ -17,9 +17,7 @@ import com.pasichdev.newshub.ui.screen.home.HomeState
 
 @Composable
 fun NewsList(
-    modifier: Modifier,
-    state: HomeState = HomeState(),
-    clickNews: ClickNews
+    modifier: Modifier, state: HomeState = HomeState(), clickNews: ClickNews
 ) {
 
 
@@ -29,8 +27,6 @@ fun NewsList(
 
 
     Box(modifier) {
-
-
         LazyColumn(
             modifier = modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -47,10 +43,8 @@ fun NewsList(
 
                     }
 
-                    ItemHeadLineNews(it,
-                        modifier = modifier,
-                        savedNews = isSaved,
-                        clickNews = clickNews
+                    ItemHeadLineNews(
+                        it, modifier = modifier, savedNews = isSaved, clickNews = clickNews
                     )
 
                 }
@@ -60,9 +54,9 @@ fun NewsList(
                 item {
                     when (news?.loadState?.refresh) {
                         is LoadState.Loading -> LoadingData()
-                        is LoadState.Error -> NotInternetConnection(
-                            modifier,
-                            refresh = { news.retry() })
+                        is LoadState.Error -> {
+                            NotInternetConnection(modifier, refresh = { news.retry() })
+                        }
 
                         else -> {}
                     }

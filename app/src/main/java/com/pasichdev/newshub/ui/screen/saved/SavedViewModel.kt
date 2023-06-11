@@ -9,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,9 +21,13 @@ class SavedViewModel @Inject constructor(
     val state = _state.asStateFlow()
 
     init {
-        viewModelScope.launch { //this: CoroutineScope
-            appRepository.getAllSavedNews().flowOn(Dispatchers.IO).collect { news: List<News> ->
-                _state.value.savedNews = news
+        viewModelScope.launch {
+            appRepository.getAllSavedNews().flowOn(Dispatchers.IO).collect {
+                _state.update { homeState ->
+                    homeState.copy(
+                        savedNews = it
+                    )
+                }
             }
         }
     }

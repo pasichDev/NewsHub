@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.distinctUntilChangedBy
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
@@ -31,26 +32,30 @@ class HomeViewModel @Inject constructor(
 
     init {
         observeNews()
+        viewModelScope.launch {
+            appRepository.getAllSavedNews().flowOn(Dispatchers.IO).collect {
+                _state.update { homeState ->
+                    homeState.copy(
+                        savedNews = it
+                    )
+                }
+            }
+        }
     }
 
     private fun observeNews() {
         state.distinctUntilChangedBy { homeState ->
             homeState.categoryIndex
         }.map {
-
-
             _state.update { homeState ->
                 homeState.copy(
-                    news = getNews(homeState.tagsNewsIndex[homeState.tabIndex]),
-                    savedNews = emptyList() // List<News>
-
+                    news = getNews(homeState.tagsNewsIndex[homeState.tabIndex])
                 )
             }
-
         }.launchIn(viewModelScope)
 
-    }
 
+    }
 
     fun onCategoryChanged(index: Int) {
         viewModelScope.launch {

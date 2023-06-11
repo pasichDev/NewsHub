@@ -19,7 +19,7 @@ interface NewsDao {
     @Delete
     fun unSavedNews(saved: News)
 
-    @Query("SELECT * from saved ORDER BY publishedAt DESC")
+    @Query("SELECT * from saved ORDER BY saveTime DESC")
     fun loadSavedNews(): Flow<newsList>
 
     @Query("SELECT * from saved WHERE url = :urlNews")

@@ -57,19 +57,20 @@ fun ItemHeadLineNews(
         onClick = { clickNews.clickNews(news, savedNews) }
 
     ) {
+
+
+        AsyncImage(
+            model = ImageRequest.Builder(LocalContext.current).data(news.urlToImage).crossfade(true)
+                .build(),
+            contentDescription = "ImageNews",
+            contentScale = ContentScale.FillWidth,
+            modifier = modifier
+                .clip(RoundedCornerShape(topStart = 15.dp, topEnd = 15.dp))
+                .fillMaxWidth()
+        )
         Column(
             modifier = modifier.padding(paddingDp)
         ) {
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current).data(news.urlToImage)
-                    .crossfade(true).build(),
-                contentDescription = "ImageNews",
-                contentScale = ContentScale.Crop,
-                modifier = modifier
-                    .clip(RoundedCornerShape(10.dp))
-                    .padding(paddingDp)
-                    .fillMaxWidth()
-            )
             news.source?.let {
                 it.name?.let { it1 ->
                     Text(

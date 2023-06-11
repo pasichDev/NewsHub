@@ -17,7 +17,10 @@ class AppRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
     private val localDatabase: LocalDatabase,
 ) : AppRepository {
-    override suspend fun savedNews(news: News) = localDatabase.newsDao.savedNews(news)
+    override suspend fun savedNews(news: News) {
+        news.saveTime = System.currentTimeMillis()
+        localDatabase.newsDao.savedNews(news)
+    }
 
 
     override suspend fun unSavedNews(news: News) = localDatabase.newsDao.unSavedNews(news)

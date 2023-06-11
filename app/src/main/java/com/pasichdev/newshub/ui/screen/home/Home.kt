@@ -96,9 +96,7 @@ fun HomeScreen(
         }
 
 
-        NewsList(
-            modifier, state, clickNews = clickNews
-        )
+        NewsList(modifier, state, clickNews = clickNews)
 
     }
 }

@@ -5,12 +5,13 @@ import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import javax.annotation.Nullable
 
 @Entity(tableName = "saved")
 data class News(
     @field:SerializedName("source") val source: Source?,
 
-    @field:SerializedName("author") val author: String,
+    @field:SerializedName("author") @Nullable val author: String? = "",
 
     @field:SerializedName("title") val title: String,
 
@@ -20,7 +21,9 @@ data class News(
 
     @field:SerializedName("urlToImage") val urlToImage: String,
 
-    @field:SerializedName("publishedAt") val publishedAt: String
+    @field:SerializedName("publishedAt") val publishedAt: String,
+
+    var saveTime: Long = 0
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
