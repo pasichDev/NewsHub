@@ -1,6 +1,5 @@
 package com.pasichdev.newshub.ui.components.moreDialog
 
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -16,7 +15,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,23 +27,18 @@ import com.pasichdev.newshub.ui.components.bottombarviewactivity.ClickListenerAp
 fun BottomSheetContent(
     savedNews: Boolean = false, clickListenerAppBar: ClickListenerAppBar
 ) {
-    val context = LocalContext.current
     Column {
         BottomAppBarViewNews(savedNews = savedNews, clickListenerAppBar = clickListenerAppBar)
         BottomSheetListItem(icon = R.drawable.ic_news_open,
             title = stringResource(id = R.string.openLinkBrowser),
-            onItemClick = { title ->
-                Toast.makeText(
-                    context, title, Toast.LENGTH_SHORT
-                ).show()
+            onItemClick = {
+                clickListenerAppBar.openBrowser()
             })
         BottomSheetListItem(
             icon = R.drawable.ic_open_browser,
             title = stringResource(id = R.string.openNewsAuthor),
-            onItemClick = { title ->
-                Toast.makeText(
-                    context, title, Toast.LENGTH_SHORT
-                ).show()
+            onItemClick = {
+                clickListenerAppBar.openNewsOtherAuthor()
             })
     }
 }
@@ -91,6 +84,10 @@ fun BottomSheetContentPreview() {
         }
 
         override fun openNewsOtherAuthor() {
+        }
+
+        override fun openBrowser() {
+
         }
     })
 }

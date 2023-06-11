@@ -24,7 +24,7 @@ fun SavedScreen(
     context: Context = LocalContext.current,
     clickNews: ClickNews = object : ClickNews {
         override fun clickNews(urlNews: String, saved: Boolean) {
-            openViewNewsActivity(context, urlNews, saved)
+            openViewNewsActivity(context, urlNews, true)
         }
 
         override fun savedNews(news: News, saved: Boolean) {

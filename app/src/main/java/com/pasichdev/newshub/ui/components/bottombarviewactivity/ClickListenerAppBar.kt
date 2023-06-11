@@ -5,4 +5,5 @@ interface ClickListenerAppBar {
     fun share()
     fun more()
     fun openNewsOtherAuthor()
+    fun openBrowser()
 }

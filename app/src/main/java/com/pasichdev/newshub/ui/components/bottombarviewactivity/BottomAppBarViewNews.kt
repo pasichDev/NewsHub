@@ -1,8 +1,10 @@
 package com.pasichdev.newshub.ui.components.bottombarviewactivity
 
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -21,6 +23,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.pasichdev.newshub.R
@@ -46,6 +49,12 @@ fun BottomAppBarViewNews(
                 colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.onSurfaceVariant)
 
             ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.search_web),
+                    contentDescription = stringResource(id = R.string.titleSearchNews),
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                Spacer(modifier = Modifier.size(ButtonDefaults.IconSize))
                 Text(
                     text = stringResource(id = R.string.titleSearchNews),
                     color = MaterialTheme.colorScheme.onSurfaceVariant

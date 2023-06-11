@@ -31,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.web.WebView
@@ -64,6 +65,7 @@ class ViewNewsActivity : ComponentActivity() {
 
             val scaffoldState = rememberBottomSheetScaffoldState()
             val isElevationNewsBox = remember { mutableStateOf(false) }
+            val uriHandler = LocalUriHandler.current
 
 
             AppTheme(colorNavigationDefault = true) {
@@ -89,16 +91,18 @@ class ViewNewsActivity : ComponentActivity() {
                     scaffoldState = scaffoldState,
                     sheetPeekHeight = 72.dp,
                     sheetContent = {
-                        BottomSheetContent(clickListenerAppBar = object : ClickListenerAppBar {
-                            override fun saved() {
-                                TODO("Not yet implemented")
-                            }
+                        BottomSheetContent(
+                            savedNews = savedNews,
+                            clickListenerAppBar = object : ClickListenerAppBar {
+                                override fun saved() {
+                                    TODO("Not yet implemented")
+                                }
 
-                            override fun share() {
-                                shareNews(context, urlNews)
-                            }
+                                override fun share() {
+                                    shareNews(context, urlNews)
+                                }
 
-                            override fun more() {
+                                override fun more() {
 
                                 coroutineScope.launch {
                                     if (!scaffoldState.bottomSheetState.isExpanded) {
@@ -109,11 +113,16 @@ class ViewNewsActivity : ComponentActivity() {
                                     }
 
                                 }
-                            }
+                                }
 
-                            override fun openNewsOtherAuthor() {
-                            }
-                        })
+                                override fun openNewsOtherAuthor() {
+
+                                }
+
+                                override fun openBrowser() {
+                                    uriHandler.openUri(urlNews)
+                                }
+                            })
 
                     }
 

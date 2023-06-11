@@ -57,11 +57,9 @@ fun NavigationGraph(navController: NavHostController, modifier: Modifier) {
     NavHost(navController, startDestination = HOME_SCREEN) {
         composable(HOME_SCREEN) {
             HomeScreen(modifier)
-
         }
         composable(SAVED_SCREEN) {
             SavedScreen(modifier)
-
 
         }
 
