@@ -86,6 +86,7 @@ class ViewNewsActivity : ComponentActivity() {
                 BottomSheetScaffold(
                     scaffoldState = scaffoldState,
                     sheetPeekHeight = 72.dp,
+                    sheetShape = RoundedCornerShape(20.dp),
                     sheetContent = {
                         BottomSheetContent(
                             savedNews = savedNews,
