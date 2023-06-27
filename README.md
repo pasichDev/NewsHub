@@ -24,10 +24,10 @@ Alternatively, you can build the project from source by following these steps:
 git clone https://github.com/pasichDev/NewsHub.git
 ```
 
-
 2. Open the project in Android Studio.
-
-3. Build and run the application.
+3. Create an account with newsapi.org and get your api token.
+4. Write your api token in the constants file variable BaseUrl Api.
+5. Build and run the application.
 
 ## Usage
 
