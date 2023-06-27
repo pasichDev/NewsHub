@@ -34,8 +34,7 @@ fun BottomSheetContent(
             onItemClick = {
                 clickListenerAppBar.openBrowser()
             })
-        BottomSheetListItem(
-            icon = R.drawable.ic_open_browser,
+        BottomSheetListItem(icon = R.drawable.ic_open_browser,
             title = stringResource(id = R.string.openNewsAuthor),
             onItemClick = {
                 clickListenerAppBar.openNewsOtherAuthor()
@@ -74,20 +73,7 @@ fun BottomSheetListItemPreview() {
 @Composable
 fun BottomSheetContentPreview() {
     BottomSheetContent(clickListenerAppBar = object : ClickListenerAppBar {
-        override fun saved() {
-        }
 
-        override fun share() {
-        }
 
-        override fun more() {
-        }
-
-        override fun openNewsOtherAuthor() {
-        }
-
-        override fun openBrowser() {
-
-        }
     })
 }

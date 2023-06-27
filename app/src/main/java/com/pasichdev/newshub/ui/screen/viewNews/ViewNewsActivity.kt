@@ -1,6 +1,8 @@
 package com.pasichdev.newshub.ui.screen.viewNews
 
+import android.content.Context
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.core.TweenSpec
@@ -32,11 +34,13 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.web.WebView
 import com.google.accompanist.web.rememberWebViewState
+import com.pasichdev.newshub.R
 import com.pasichdev.newshub.data.model.News
 import com.pasichdev.newshub.ui.components.bottombarviewactivity.ClickListenerAppBar
 import com.pasichdev.newshub.ui.components.moreDialog.BottomSheetContent
@@ -66,6 +70,7 @@ class ViewNewsActivity : ComponentActivity() {
             val scaffoldState = rememberBottomSheetScaffoldState()
             val isElevationNewsBox = remember { mutableStateOf(false) }
 
+            val stringMessage = stringResource(id = R.string.functionNotRealese)
 
 
             AppTheme(colorNavigationDefault = true) {
@@ -104,26 +109,30 @@ class ViewNewsActivity : ComponentActivity() {
                                 }
 
                                 override fun more() {
-                                coroutineScope.launch {
-                                    if (!scaffoldState.bottomSheetState.isExpanded) {
-                                        scaffoldState.bottomSheetState.expand()
+                                    coroutineScope.launch {
+                                        if (!scaffoldState.bottomSheetState.isExpanded) {
+                                            scaffoldState.bottomSheetState.expand()
 
-                                    } else {
-                                        scaffoldState.bottomSheetState.collapse()
+                                        } else {
+                                            scaffoldState.bottomSheetState.collapse()
+                                        }
+
                                     }
-
-                                }
                                 }
 
-                                override fun openNewsOtherAuthor() {
-
-                                }
 
                                 override fun openBrowser() {
                                     if (news != null) {
                                         uriHandler.openUri(news.url)
                                     }
                                 }
+
+                                override fun openNewsOtherAuthor() =
+                                    showMessage(context, stringMessage)
+
+                                override fun openNewsGlobalTitle() =
+                                    showMessage(context, stringMessage)
+
                             })
 
                     }
@@ -145,19 +154,21 @@ class ViewNewsActivity : ComponentActivity() {
     }
 
 
+    fun showMessage(context: Context, message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+
+    }
+
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun ViewNewsScreen(
-        modifier: Modifier = Modifier,
-        urlNews: String,
-        isElevationNewsBox: MutableState<Boolean>
+        modifier: Modifier = Modifier, urlNews: String, isElevationNewsBox: MutableState<Boolean>
     ) {
         Scaffold(topBar = {
             TopAppBar(title = {}, navigationIcon = {
-                if (!isElevationNewsBox.value)
-                    IconButton(onClick = { finish() }) {
-                        Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "Go Back")
-                    }
+                if (!isElevationNewsBox.value) IconButton(onClick = { finish() }) {
+                    Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "Go Back")
+                }
             })
         }) { padding ->
             val clip = if (isElevationNewsBox.value) {
@@ -180,14 +191,11 @@ class ViewNewsActivity : ComponentActivity() {
                 modifier = modifier
                     .padding(paddingValues = padding)
                     .scale(scale)
-                    .shadow(shape = cardShape, elevation = 12.dp),
-                shape = cardShape
+                    .shadow(shape = cardShape, elevation = 12.dp), shape = cardShape
             ) {
-                WebView(
-                    modifier = modifier,
+                WebView(modifier = modifier,
                     state = webViewState,
-                    onCreated = { it.settings.javaScriptEnabled = true }
-                )
+                    onCreated = { it.settings.javaScriptEnabled = true })
             }
 
 

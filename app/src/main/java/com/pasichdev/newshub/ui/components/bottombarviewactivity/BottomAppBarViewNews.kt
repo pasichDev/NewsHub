@@ -45,7 +45,7 @@ fun BottomAppBarViewNews(
         containerColor = MaterialTheme.colorScheme.surfaceVariant,
         actions = {
             OutlinedButton(
-                onClick = { clickListenerAppBar.openNewsOtherAuthor() },
+                onClick = { clickListenerAppBar.openNewsGlobalTitle() },
                 modifier = modifier.padding(start = 15.dp),
                 colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.onSurfaceVariant)
 

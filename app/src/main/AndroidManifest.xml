@@ -27,8 +27,10 @@
         </activity>
         <activity
             android:name=".ui.screen.viewNews.ViewNewsActivity"
-            android:exported="true"
-            android:theme="@style/Theme.NewsHub" />
+            android:exported="true" />
+        <activity
+            android:name=".ui.screen.viewDetail.ViewDetailActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

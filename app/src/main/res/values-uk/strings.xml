@@ -25,4 +25,5 @@
 
     <string name="openLinkBrowser">Переглянути оригінальну сторінку</string>
     <string name="openNewsAuthor">Перейти на сторінку видання</string>
+    <string name="functionNotRealese">Функція нереалізована</string>
 </resources>
