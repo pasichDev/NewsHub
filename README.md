@@ -5,7 +5,6 @@ Welcome to NewsHub, an Android application built on the [news.org](https://newsa
 ## Screenshots
 
 ![MainActivity](/doc/src_1.jpg)
-![ViewNews](/doc/src_2.jpg)
 ![SavedNews](/doc/src_3.jpg)
 
 
