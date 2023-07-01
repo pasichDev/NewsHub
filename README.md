@@ -27,14 +27,6 @@ git clone https://github.com/pasichDev/NewsHub.git
 4. Write your api token in the file variable BaseUrl Api.
 5. Build and run the application.
 
-## Usage
-
-Once you have installed NewsApp, you can use it to browse and search for news articles. You can also save articles to your favorites for future reference and share articles with others.
-
-## Contributing
-
-If you would like to contribute to NewsApp, you can create a pull request on the GitHub repository. Please make sure to follow the existing code style and conventions. 
-
 ## License
 
 NewsApp is licensed under the [MIT License](https://github.com/pasichDev/NewsHub/blob/main/LICENSE).
