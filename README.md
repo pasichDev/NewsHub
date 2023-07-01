@@ -24,7 +24,7 @@ git clone https://github.com/pasichDev/NewsHub.git
 
 2. Open the project in Android Studio.
 3. Create an account with newsapi.org and get your api token.
-4. Write your api token in the file variable BaseUrl Api.
+4. Write your api token in the file variable API_KEY.
 5. Build and run the application.
 
 ## License
