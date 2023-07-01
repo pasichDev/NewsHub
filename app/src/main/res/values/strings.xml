@@ -2,7 +2,6 @@
     <string name="app_name">News Hub</string>
 
     <string name="homeNav">Home</string>
-    <string name="exploreNav">Explore</string>
     <string name="savedNav">Saved</string>
     <string name="refresh">Refresh</string>
 
@@ -15,7 +14,6 @@
     <string name="SportsCat">Sports</string>
     <string name="TechnologyCat">Technology</string>
 
-    <string name="savedFragment">Saved news</string>
     <string name="savedNewsEmpty">Saved news will be displayed here</string>
 
     <string name="titleSearchNews">Full Review</string>

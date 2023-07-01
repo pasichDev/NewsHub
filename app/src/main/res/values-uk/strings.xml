@@ -5,7 +5,6 @@
     <string name="app_name">News Hub</string>
 
     <string name="homeNav">Головне</string>
-    <string name="exploreNav">Досліджувати</string>
     <string name="savedNav">Збережені</string>
     <string name="refresh">Оновити</string>
 
@@ -18,7 +17,6 @@
     <string name="SportsCat">Спорт</string>
     <string name="TechnologyCat">Технології</string>
 
-    <string name="savedFragment">Збережені новини</string>
     <string name="savedNewsEmpty">Тут відображатимуться збережені новини</string>
     <string name="titleSearchNews">Повний Огляд</string>
 
