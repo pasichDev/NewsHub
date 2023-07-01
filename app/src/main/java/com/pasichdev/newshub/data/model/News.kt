@@ -11,7 +11,7 @@ import javax.annotation.Nullable
 data class News(
     @field:SerializedName("source") val source: Source?,
 
-    @field:SerializedName("author") @Nullable val author: String? = "",
+    @field:SerializedName("author") @Nullable val author: String? = null,
 
     @field:SerializedName("title") val title: String,
 
@@ -28,7 +28,7 @@ data class News(
 
     constructor(parcel: Parcel) : this(
         parcel.readParcelable(Source::class.java.classLoader),
-        parcel.readString()!!,
+        parcel.readString(),
         parcel.readString()!!,
         parcel.readString(),
         parcel.readString()!!,
