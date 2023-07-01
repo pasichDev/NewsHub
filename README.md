@@ -2,6 +2,14 @@
 
 Welcome to NewsHub, an Android application built on the [news.org](https://newsapi.org/) API. The main goal of this project is to showcase the usage of various Android technologies such as Jetpack Compose, Kotlin, MVVM, Architecture Component, Hilt, Room, Coil, Paging, and Retrofit 2.
 
+## Screenshots
+
+![MainActivity](/doc/src_1.jpg)
+![ViewNews](/doc/src_2.jpg)
+![SavedNews](/doc/src_3.jpg)
+
+
+
 ## Installation
 
 To install NewsHub, you can download the APK file from the [releases page](https://github.com/pasichDev/NewsHub/releases) and install it on your Android device.
